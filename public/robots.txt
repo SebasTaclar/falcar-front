@@ -1,0 +1,43 @@
+# Robots.txt para Pikiitos
+# Permite el rastreo de todos los motores de busqueda
+
+User-agent: *
+Allow: /
+
+# Excluir paginas administrativas y privadas
+Disallow: /admin
+Disallow: /login
+Disallow: /checkout
+Disallow: /api/
+Disallow: /*.json$
+
+# Excluir paginas de proceso de pago en curso
+Disallow: /checkout/processing
+Disallow: /payment-processing
+
+# Permitir especificamente paginas importantes
+Allow: /productos
+Allow: /categorias/
+Allow: /colecciones
+Allow: /ofertas
+Allow: /nosotros
+Allow: /terms-and-conditions
+
+# Crawl-delay para ser amigable con los servidores
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://pikiitos.co/sitemap.xml
+
+# Motores de busqueda especificos
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1

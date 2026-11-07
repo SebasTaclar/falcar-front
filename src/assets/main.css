@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFF8E8;
+    color: #3D2E1F;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #FFD84D;
+    color: #3D2E1F;
+  }
+}
+
+@layer components {
+  .btn-pikiitos {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-pikiitos-yellow text-pikiitos-brown font-poppins font-semibold rounded-full transition-all duration-300 ease-out hover:bg-pikiitos-yellow-dark hover:shadow-glow-yellow hover:-translate-y-0.5 active:translate-y-0 active:shadow-soft;
+  }
+
+  .btn-pikiitos-outline {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-pikiitos-brown font-poppins font-semibold rounded-full border-2 border-pikiitos-yellow/30 transition-all duration-300 ease-out hover:border-pikiitos-yellow hover:bg-pikiitos-cream hover:shadow-soft hover:-translate-y-0.5;
+  }
+
+  .btn-pikiitos-pink {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-pikiitos-pink text-white font-poppins font-semibold rounded-full transition-all duration-300 ease-out hover:bg-pink-400 hover:shadow-glow-pink hover:-translate-y-0.5;
+  }
+
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .card-pikiitos {
+    @apply bg-white rounded-3xl shadow-soft border border-pikiitos-cream/50 transition-all duration-300 ease-out hover:shadow-soft-lg hover:-translate-y-1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
