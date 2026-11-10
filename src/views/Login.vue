@@ -112,7 +112,7 @@ const clearCustomValidityMessage = (event: Event) => {
   min-height: 100vh;
   width: 100%;
   padding: 2rem;
-  background: linear-gradient(135deg, #f5f3e8 0%, #e8e4d0 50%, #d9d4b8 100%);
+  background: linear-gradient(135deg, #F4F6FA 0%, #e4e9f2 50%, #d6deed 100%);
   position: relative;
   transition: all 0.3s ease;
 }
@@ -152,9 +152,9 @@ const clearCustomValidityMessage = (event: Event) => {
 }
 
 :root[data-theme='dark'] .form-input:focus {
-  border-color: #FFD84D;
+  border-color: #D49B27;
   background: rgba(0, 30, 60, 0.9);
-  box-shadow: 0 0 0 4px rgba(255, 216, 77, 0.15);
+  box-shadow: 0 0 0 4px rgba(212, 155, 39, 0.25);
 }
 
 :root[data-theme='dark'] .input-icon {
@@ -162,7 +162,7 @@ const clearCustomValidityMessage = (event: Event) => {
 }
 
 :root[data-theme='dark'] .input-wrapper:focus-within .input-icon {
-  color: #FFD84D;
+  color: #D49B27;
 }
 
 .login-main::before {
@@ -172,8 +172,8 @@ const clearCustomValidityMessage = (event: Event) => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(194, 189, 116, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, rgba(255, 216, 77, 0.1) 0%, transparent 50%);
+  background: radial-gradient(circle at 30% 20%, rgba(5, 42, 117, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(212, 155, 39, 0.12) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -182,7 +182,7 @@ const clearCustomValidityMessage = (event: Event) => {
   backdrop-filter: var(--backdrop-blur);
   border-radius: 24px;
   padding: 3rem;
-  border: 1px solid rgba(194, 189, 116, 0.3);
+  border: 1px solid rgba(212, 155, 39, 0.35);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
   text-align: center;
   width: 100%;
@@ -199,14 +199,14 @@ const clearCustomValidityMessage = (event: Event) => {
 .login-header h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #2d2d2d;
+  color: #0A1F44;
   margin: 0 0 0.5rem 0;
   font-family: var(--font-primary);
 }
 
 .login-header h2 {
   font-size: 1rem;
-  color: #666;
+  color: #3A4A6B;
   margin: 0;
   font-weight: 400;
   font-family: var(--font-primary);
@@ -242,22 +242,22 @@ const clearCustomValidityMessage = (event: Event) => {
   left: 14px;
   width: 18px;
   height: 18px;
-  color: #999;
+  color: #7A8AAB;
   pointer-events: none;
   transition: color 0.3s ease;
 }
 
 .input-wrapper:focus-within .input-icon {
-  color: #c2bd74;
+  color: #D49B27;
 }
 
 .form-input {
   width: 100%;
   padding: 14px 16px 14px 44px;
-  background: #f8f8f8;
-  border: 2px solid #e0e0e0;
+  background: #F4F6FA;
+  border: 2px solid #d6deed;
   border-radius: 12px;
-  color: #333;
+  color: #0A1F44;
   font-size: 1rem;
   font-family: var(--font-primary);
   transition: all 0.3s ease;
@@ -265,25 +265,25 @@ const clearCustomValidityMessage = (event: Event) => {
 }
 
 .form-input::placeholder {
-  color: #aaa;
+  color: #7A8AAB;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #c2bd74;
+  border-color: #D49B27;
   background: #fff;
-  box-shadow: 0 0 0 4px rgba(194, 189, 116, 0.15);
+  box-shadow: 0 0 0 4px rgba(212, 155, 39, 0.2);
 }
 
 .form-input:invalid {
-  border-color: rgba(0, 94, 180, 0.6);
-  box-shadow: 0 0 8px rgba(0, 94, 180, 0.2);
+  border-color: rgba(5, 42, 117, 0.6);
+  box-shadow: 0 0 8px rgba(5, 42, 117, 0.2);
 }
 
 .btn-primary {
   width: 100%;
-  background: linear-gradient(135deg, #FFD84D 0%, #FFC107 100%);
-  color: #333;
+  background: linear-gradient(135deg, #D49B27 0%, #E8B84A 100%);
+  color: #052A75;
   border: none;
   border-radius: 12px;
   padding: 16px 24px;
@@ -291,15 +291,15 @@ const clearCustomValidityMessage = (event: Event) => {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 216, 77, 0.4);
+  box-shadow: 0 4px 15px rgba(212, 155, 39, 0.45);
   font-family: var(--font-primary);
   margin-top: 0.5rem;
 }
 
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 216, 77, 0.5);
-  background: linear-gradient(135deg, #ffe066 0%, #ffd54f 100%);
+  box-shadow: 0 8px 25px rgba(212, 155, 39, 0.55);
+  background: linear-gradient(135deg, #E8B84A 0%, #D49B27 100%);
 }
 
 .btn-primary:disabled {

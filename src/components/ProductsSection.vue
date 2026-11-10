@@ -1,12 +1,12 @@
 <template>
-  <section class="py-20 lg:py-28 bg-pikiitos-cream/30">
+  <section class="py-20 lg:py-28 bg-falcar-cream/30">
     <div class="section-padding">
       <div class="section-container">
         <!-- Section Header -->
         <div class="flex flex-col sm:flex-row items-center justify-between mb-14 gap-4">
           <div class="text-center sm:text-left">
-            <span class="inline-block font-poppins font-semibold text-sm text-pikiitos-pink tracking-widest uppercase mb-3">Lo más querido</span>
-            <h2 class="font-fredoka font-bold text-3xl sm:text-4xl lg:text-5xl text-pikiitos-brown">
+            <span class="inline-block font-poppins font-semibold text-sm text-falcar-pink tracking-widest uppercase mb-3">Lo más pedido</span>
+            <h2 class="font-fredoka font-bold text-3xl sm:text-4xl lg:text-5xl text-falcar-brown">
               Productos Destacados
             </h2>
           </div>
@@ -15,19 +15,19 @@
               <button
                 @click="scrollLeft"
                 :disabled="!canScrollLeft"
-                class="w-10 h-10 rounded-full border border-pikiitos-cream/60 bg-white flex items-center justify-center text-pikiitos-brown hover:bg-pikiitos-cream/40 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                class="w-10 h-10 rounded-full border border-falcar-cream/60 bg-white flex items-center justify-center text-falcar-brown hover:bg-falcar-cream/40 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
               </button>
               <button
                 @click="scrollRight"
                 :disabled="!canScrollRight"
-                class="w-10 h-10 rounded-full border border-pikiitos-cream/60 bg-white flex items-center justify-center text-pikiitos-brown hover:bg-pikiitos-cream/40 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                class="w-10 h-10 rounded-full border border-falcar-cream/60 bg-white flex items-center justify-center text-falcar-brown hover:bg-falcar-cream/40 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               </button>
             </div>
-            <RouterLink to="/productos" class="btn-pikiitos-outline text-sm shrink-0">
+            <RouterLink to="/productos" class="btn-falcar-outline text-sm shrink-0">
               Ver todos
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </RouterLink>

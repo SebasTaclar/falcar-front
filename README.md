@@ -1,4 +1,4 @@
-# front-project
+# FALCAR GROUP S.A.S. - Frontend
 
 npm ci
 npm run build

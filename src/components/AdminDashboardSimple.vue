@@ -4,8 +4,8 @@
     <aside class="sidebar">
       <div class="sidebar-header">
         <router-link to="/" class="sidebar-logo">
-          <img src="https://res.cloudinary.com/dlwzazojt/image/upload/v1787367349/logo-pollito-removebg-preview_fhsilm.png" alt="Pollito" class="logo-pollito" />
-          <img src="https://res.cloudinary.com/dlwzazojt/image/upload/v1787349262/logo-pikiitos-texto-removebg-preview_bn2t7l.png" alt="Pikiitos" class="logo-img" />
+          <img src="/images/falcar.jpeg" alt="FALCAR" class="logo-pollito" />
+          <img src="/images/falcar.jpeg" alt="FALCAR GROUP" class="logo-img" />
         </router-link>
         <p class="sidebar-subtitle">Panel de Administración</p>
       </div>
@@ -34,7 +34,7 @@
           </span>
           <span class="nav-label">Cerrar sesión</span>
         </button>
-        <p class="copyright">Pikiitos<br/>© 2026 Todos los derechos reservados.</p>
+        <p class="copyright">FALCAR GROUP<br/>© 2026 Todos los derechos reservados.</p>
       </div>
     </aside>
 
@@ -140,18 +140,18 @@
               <div class="donut-chart-wrapper">
                 <svg viewBox="0 0 120 120" class="donut-svg">
                   <circle cx="60" cy="60" r="50" fill="none" stroke="#E5E7EB" stroke-width="14"/>
-                  <circle cx="60" cy="60" r="50" fill="none" stroke="#FFD84D" stroke-width="14"
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="#D49B27" stroke-width="14"
                     :stroke-dasharray="productStatusData.availableArc + ' ' + productStatusData.totalArc"
                     stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
-                  <circle cx="60" cy="60" r="50" fill="none" stroke="#FF8E8E" stroke-width="14"
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="#D91E28" stroke-width="14"
                     :stroke-dasharray="productStatusData.unavailableArc + ' ' + productStatusData.totalArc"
                     :stroke-dashoffset="'-' + productStatusData.availableArc" transform="rotate(-90 60 60)"/>
                   <text x="60" y="56" text-anchor="middle" class="donut-total">{{ products.length }}</text>
                   <text x="60" y="70" text-anchor="middle" class="donut-subtitle">total</text>
                 </svg>
                 <div class="donut-legend">
-                  <span class="legend-item"><span class="legend-dot" style="background:#FFD84D"></span> Disponibles ({{ productStatusData.availableCount }})</span>
-                  <span class="legend-item"><span class="legend-dot" style="background:#FF8E8E"></span> Agotados ({{ productStatusData.unavailableCount }})</span>
+                  <span class="legend-item"><span class="legend-dot" style="background:#D49B27"></span> Disponibles ({{ productStatusData.availableCount }})</span>
+                  <span class="legend-item"><span class="legend-dot" style="background:#D91E28"></span> Agotados ({{ productStatusData.unavailableCount }})</span>
                 </div>
               </div>
             </div>
@@ -366,7 +366,7 @@
                   </td>
                   <td class="col-featured">
                     <button class="prod-star-btn" :class="{ active: product.isShowcase }" @click="toggleProductFeatured(product)">
-                      <svg width="18" height="18" viewBox="0 0 24 24" :fill="product.isShowcase ? '#FFD84D' : 'none'" :stroke="product.isShowcase ? '#FFD84D' : '#9CA3AF'" stroke-width="2">
+                      <svg width="18" height="18" viewBox="0 0 24 24" :fill="product.isShowcase ? '#D49B27' : 'none'" :stroke="product.isShowcase ? '#D49B27' : '#9CA3AF'" stroke-width="2">
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                       </svg>
                     </button>
@@ -771,8 +771,8 @@
             <!-- Stats -->
             <div class="stats-row stats-row-4">
               <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(135deg, #FFD84D, #FF8E8E)">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D2B1F" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <div class="stat-icon" style="background: linear-gradient(135deg, #D49B27, #D91E28)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                 </div>
                 <div class="stat-content">
                   <span class="stat-label">Total Pedidos</span>
@@ -780,8 +780,8 @@
                 </div>
               </div>
               <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(135deg, #FFD84D, #FF8E8E)">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D2B1F" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div class="stat-icon" style="background: linear-gradient(135deg, #D49B27, #D91E28)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div class="stat-content">
                   <span class="stat-label">Pendientes</span>
@@ -789,8 +789,8 @@
                 </div>
               </div>
               <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(135deg, #FFD84D, #FF8E8E)">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D2B1F" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <div class="stat-icon" style="background: linear-gradient(135deg, #D49B27, #D91E28)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
                 <div class="stat-content">
                   <span class="stat-label">Completados</span>
@@ -798,8 +798,8 @@
                 </div>
               </div>
               <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(135deg, #FFD84D, #FF8E8E)">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D2B1F" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <div class="stat-icon" style="background: linear-gradient(135deg, #D49B27, #D91E28)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
                 <div class="stat-content">
                   <span class="stat-label">Ingresos</span>
@@ -1058,7 +1058,7 @@
                   <input :value="img" @input="(e) => updateImageUrl(idx, (e.target as HTMLInputElement).value)" type="text" class="form-input" :placeholder="'URL imagen ' + (idx + 1)" />
                   <button v-if="productForm.images.length > 1" type="button" class="image-remove-btn" @click="removeImageUrl(idx)" title="Eliminar">✕</button>
                   <button type="button" class="image-main-btn" :class="{ active: idx === mainImageIndex }" @click="setMainImage(idx)" title="Marcar como principal">
-                    <svg width="14" height="14" viewBox="0 0 24 24" :fill="idx === mainImageIndex ? '#FFD84D' : 'none'" :stroke="idx === mainImageIndex ? '#FFD84D' : '#9CA3AF'" stroke-width="2">
+                    <svg width="14" height="14" viewBox="0 0 24 24" :fill="idx === mainImageIndex ? '#D49B27' : 'none'" :stroke="idx === mainImageIndex ? '#D49B27' : '#9CA3AF'" stroke-width="2">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                       <circle cx="12" cy="10" r="3"/>
                     </svg>
@@ -1203,7 +1203,7 @@
     <div v-if="confirmModal.open" class="modal-overlay" @click.self="confirmModal.onCancel()">
       <div class="modal confirm-modal">
         <div class="confirm-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B8861F" stroke-width="2">
             <circle cx="12" cy="12" r="10"/>
             <line x1="12" y1="8" x2="12" y2="12"/>
             <line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -1382,30 +1382,30 @@ const dashboardStats = computed(() => [
   {
     label: 'Productos',
     value: products.value.length.toString(),
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D2B1F" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
-    iconBg: 'linear-gradient(135deg, #FFD84D, #FF8E8E)'
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
+    iconBg: 'linear-gradient(135deg, #D49B27, #D91E28)'
   },
   {
     label: 'Categorías',
     value: categories.value.length.toString(),
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D2B1F" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
-    iconBg: 'linear-gradient(135deg, #FFD84D, #FF8E8E)'
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
+    iconBg: 'linear-gradient(135deg, #D49B27, #D91E28)'
   },
   {
     label: 'Ventas',
     value: `$${totalRevenue.value.toLocaleString()}`,
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D2B1F" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
-    iconBg: 'linear-gradient(135deg, #FFD84D, #FF8E8E)'
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+    iconBg: 'linear-gradient(135deg, #D49B27, #D91E28)'
   },
   {
     label: 'Pedidos',
     value: totalSalesCount.value.toString(),
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D2B1F" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>',
-    iconBg: 'linear-gradient(135deg, #FFD84D, #FF8E8E)'
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>',
+    iconBg: 'linear-gradient(135deg, #D49B27, #D91E28)'
   }
 ])
 
-const categoryColors = ['#FFD84D', '#FF8E8E', '#8B6914', '#A0522D', '#D2691E', '#DAA520', '#F4A460', '#DEB887']
+const categoryColors = ['#D49B27', '#D91E28', '#052A75', '#0A3D9B', '#052A75', '#D49B27', '#E8B84A', '#C9D6EE']
 
 const productsByCategory = computed(() => {
   const map: Record<string, number> = {}
@@ -1428,11 +1428,11 @@ const productsByCategory = computed(() => {
 
 const productsByPrice = computed(() => {
   const ranges = [
-    { label: '$0 - $20k', min: 0, max: 20000, color: '#FFD84D' },
-    { label: '$20k - $50k', min: 20000, max: 50000, color: '#FF8E8E' },
-    { label: '$50k - $100k', min: 50000, max: 100000, color: '#8B6914' },
-    { label: '$100k - $200k', min: 100000, max: 200000, color: '#A0522D' },
-    { label: '$200k+', min: 200000, max: Infinity, color: '#D2691E' }
+    { label: '$0 - $20k', min: 0, max: 20000, color: '#D49B27' },
+    { label: '$20k - $50k', min: 20000, max: 50000, color: '#D91E28' },
+    { label: '$50k - $100k', min: 50000, max: 100000, color: '#052A75' },
+    { label: '$100k - $200k', min: 100000, max: 200000, color: '#0A3D9B' },
+    { label: '$200k+', min: 200000, max: Infinity, color: '#052A75' }
   ]
   const counts = ranges.map(r => ({
     ...r,
@@ -1957,12 +1957,12 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 .admin-layout, .admin-layout *, .admin-layout *::before, .admin-layout *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 .admin-layout {
-  --c-primary: #FFD84D;
-  --c-primary-hover: #8B6914;
-  --c-accent: #FF8E8E;
-  --c-black: #3D2B1F;
-  --c-dark: #5C3D1A;
-  --c-sidebar: #FFF8E8;
+  --c-primary: #D49B27;
+  --c-primary-hover: #052A75;
+  --c-accent: #D91E28;
+  --c-black: #0A1F44;
+  --c-dark: #3A4A6B;
+  --c-sidebar: #F4F6FA;
   --c-white: #FFFFFF;
   --c-light: #F5F5F5;
   --c-gray: #6B7280;
@@ -1999,7 +1999,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 
 .sidebar-header {
   padding: 24px 20px 16px;
-  border-bottom: 1px solid rgba(139,105,20,0.1);
+  border-bottom: 1px solid rgba(5,42,117,0.1);
 }
 
 .sidebar-logo {
@@ -2022,7 +2022,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 
 .sidebar-subtitle {
   font-size: 0.7rem;
-  color: #8B6914;
+  color: #052A75;
   margin-top: 4px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -2044,7 +2044,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   border-radius: 10px;
   border: none;
   background: none;
-  color: #5C3D1A;
+  color: #3A4A6B;
   font-size: 0.88rem;
   font-weight: 500;
   cursor: pointer;
@@ -2054,13 +2054,13 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 }
 
 .nav-item:hover {
-  background: rgba(255,216,77,0.15);
-  color: #3D2B1F;
+  background: rgba(212,155,39,0.15);
+  color: #052A75;
 }
 
 .nav-item.active {
   background: var(--c-primary);
-  color: #3D2B1F;
+  color: #052A75;
   font-weight: 600;
 }
 
@@ -2072,7 +2072,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   flex-shrink: 0;
 }
 
-.nav-item.active .nav-icon { color: #3D2B1F; }
+.nav-item.active .nav-icon { color: #052A75; }
 
 .nav-badge {
   margin-left: auto;
@@ -2088,15 +2088,15 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 
 .sidebar-footer {
   padding: 16px 10px 20px;
-  border-top: 1px solid rgba(139,105,20,0.1);
+  border-top: 1px solid rgba(5,42,117,0.1);
 }
 
-.logout { color: #8B6914; }
+.logout { color: #052A75; }
 .logout:hover { background: rgba(239,68,68,0.12); color: #EF4444; }
 
 .copyright {
   font-size: 0.65rem;
-  color: #8B6914;
+  color: #052A75;
   text-align: center;
   line-height: 1.5;
   margin-top: 12px;
@@ -2156,7 +2156,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 .home-btn:hover {
   border-color: var(--c-primary);
   color: var(--c-primary);
-  background: rgba(244, 180, 0, 0.04);
+  background: rgba(212,155,39,0.05);
 }
 
 .topbar-search {
@@ -2185,7 +2185,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   outline: none;
   transition: all 0.2s ease;
 }
-.topbar-search .search-input:focus { border-color: var(--c-primary); background: var(--c-white); box-shadow: 0 0 0 3px rgba(255,216,77,0.1); }
+.topbar-search .search-input:focus { border-color: var(--c-primary); background: var(--c-white); box-shadow: 0 0 0 3px rgba(212,155,39,0.1); }
 .topbar-search .search-input::placeholder { color: var(--c-gray-light); }
 
 .topbar-actions {
@@ -2624,7 +2624,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 
 .featured-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #FFD84D, #FF8E8E);
+  background: linear-gradient(90deg, #D49B27, #D91E28);
   border-radius: 4px;
   transition: width 0.6s ease;
 }
@@ -2758,7 +2758,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   font-weight: 600;
   cursor: pointer;
 }
-.card-footer-btn:hover { background: rgba(255,216,77,0.04); }
+.card-footer-btn:hover { background: rgba(212,155,39,0.04); }
 
 /* ===== TOP PRODUCTS ===== */
 .products-top-list { padding: 0; }
@@ -2943,7 +2943,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   outline: none;
   transition: all 0.2s ease;
 }
-.search-field:focus { border-color: var(--c-primary); box-shadow: 0 0 0 3px rgba(255,216,77,0.1); }
+.search-field:focus { border-color: var(--c-primary); box-shadow: 0 0 0 3px rgba(212,155,39,0.1); }
 .search-field::placeholder { color: var(--c-gray-light); }
 
 .search-clear {
@@ -3192,7 +3192,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   flex-shrink: 0;
 }
 
-.cat-stat-icon.yellow { background: rgba(255,216,77,0.12); color: var(--c-primary); }
+.cat-stat-icon.yellow { background: rgba(212,155,39,0.12); color: var(--c-primary); }
 .cat-stat-icon.green { background: rgba(16,185,129,0.12); color: var(--c-success); }
 .cat-stat-icon.red { background: rgba(239,68,68,0.12); color: var(--c-danger); }
 .cat-stat-icon.blue { background: rgba(59,130,246,0.12); color: var(--c-info); }
@@ -3312,7 +3312,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   vertical-align: middle;
 }
 
-.cat-table tbody tr:hover { background: rgba(255,216,77,0.02); }
+.cat-table tbody tr:hover { background: rgba(212,155,39,0.02); }
 .cat-table tbody tr:last-child td { border-bottom: none; }
 
 .col-check { width: 40px; text-align: center; }
@@ -3507,7 +3507,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   border-bottom: 1px solid var(--c-border);
 }
 
-.data-table tbody tr:hover { background: rgba(255,216,77,0.02); }
+.data-table tbody tr:hover { background: rgba(212,155,39,0.02); }
 .data-table tbody tr:last-child td { border-bottom: none; }
 
 .cell-stack { display: flex; flex-direction: column; gap: 2px; }
@@ -3699,7 +3699,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   outline: none;
   transition: border-color 0.2s;
 }
-.form-input:focus { border-color: var(--c-primary); box-shadow: 0 0 0 3px rgba(255,216,77,0.1); }
+.form-input:focus { border-color: var(--c-primary); box-shadow: 0 0 0 3px rgba(212,155,39,0.1); }
 .form-input::placeholder { color: var(--c-gray-light); }
 
 .price-input { position: relative; display: flex; align-items: center; }
@@ -3731,7 +3731,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   transition: all 0.2s;
 }
 .material-chip:hover { border-color: var(--c-primary); }
-.material-chip.selected { background: rgba(255,216,77,0.1); border-color: var(--c-primary); color: var(--c-primary); }
+.material-chip.selected { background: rgba(212,155,39,0.1); border-color: var(--c-primary); color: var(--c-primary); }
 
 .selected-materials {
   padding: 8px 12px;
@@ -3748,8 +3748,8 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   align-items: center;
   gap: 4px;
   padding: 2px 8px;
-  background: rgba(255,216,77,0.15);
-  border: 1px solid rgba(255,216,77,0.4);
+  background: rgba(212,155,39,0.15);
+  border: 1px solid rgba(212,155,39,0.4);
   border-radius: 6px;
   font-size: 0.8rem;
   color: var(--c-primary);
@@ -3828,8 +3828,8 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   flex-shrink: 0;
 }
 .image-main-btn svg { pointer-events: none; width: 16px; height: 16px; }
-.image-main-btn:hover { border-color: #FFD84D; background: #fffbeb; }
-.image-main-btn.active { border-color: #FFD84D; background: #FFD84D; }
+.image-main-btn:hover { border-color: #D49B27; background: #fffbeb; }
+.image-main-btn.active { border-color: #D49B27; background: #D49B27; }
 
 .image-add-btn {
   display: inline-flex;
@@ -3862,7 +3862,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 }
 
 .image-preview-item.is-main {
-  border: 2px solid #FFD84D;
+  border: 2px solid #D49B27;
 }
 
 .image-preview-item img { width: 100%; height: 80px; object-fit: cover; display: block; }
@@ -4178,8 +4178,8 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   align-items: center;
   margin-top: 16px;
   padding: 14px 16px;
-  background: rgba(255,216,77,0.08);
-  border: 1px solid rgba(255,216,77,0.2);
+  background: rgba(212,155,39,0.08);
+  border: 1px solid rgba(212,155,39,0.2);
   border-radius: 10px;
 }
 

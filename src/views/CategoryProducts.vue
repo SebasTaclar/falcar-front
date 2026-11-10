@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="category-page">
     <div class="layout">
       <aside class="sidebar">
@@ -106,6 +106,8 @@
             <div class="card-bg">
               <img :src="p.images[0] || placeholderImage" :alt="p.name" loading="lazy" decoding="async" @error="handleImageError" />
               <div class="card-overlay"></div>
+              <div class="card-tint" :class="categoryStyleOf(p.category).overlayClass"></div>
+              <div class="card-accent" :class="categoryStyleOf(p.category).bgClass"></div>
               <div v-if="p.originalPrice && p.originalPrice > p.price" class="discount-badge">
                 -{{ Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) }}%
               </div>
@@ -116,13 +118,13 @@
                 @click.stop="toggleFavorite(p.id)"
                 :aria-label="favorites.has(p.id) ? 'Quitar de favoritos' : 'Agregar a favoritos'"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" :fill="favorites.has(p.id) ? '#E88D92' : 'none'" :stroke="favorites.has(p.id) ? '#E88D92' : 'white'" stroke-width="2">
+                <svg width="18" height="18" viewBox="0 0 24 24" :fill="favorites.has(p.id) ? '#D91E28' : 'none'" :stroke="favorites.has(p.id) ? '#D91E28' : 'white'" stroke-width="2">
                   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                 </svg>
               </button>
               <span :class="['status-badge', statusClass(p.status)]">{{ getStatusText(p.status) }}</span>
               <div class="card-content">
-                <div class="cat-label">{{ categoryName(p.category) }}</div>
+                <div class="cat-label" :class="categoryStyleOf(p.category).chipClass">{{ categoryName(p.category) }}</div>
                 <h3 class="prod-name">{{ p.name }}</h3>
                 <div class="price-row">
                   <span class="price">${{ p.price.toLocaleString() }}</span>
@@ -170,8 +172,8 @@
     >
       <div v-if="showSizeModal" class="fixed inset-0 z-[2300] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4" @click.self="showSizeModal = false; selectedSizes = []">
         <div class="bg-white rounded-2xl p-5 w-full max-w-xs shadow-xl" @click.stop>
-          <h4 class="font-fredoka font-bold text-lg text-pikiitos-brown mb-1">Escoge tu talla</h4>
-          <p class="font-poppins text-xs text-pikiitos-text-muted mb-4">{{ selectedProduct?.name }}</p>
+          <h4 class="font-fredoka font-bold text-lg text-falcar-brown mb-1">Escoge tu talla</h4>
+          <p class="font-poppins text-xs text-falcar-text-muted mb-4">{{ selectedProduct?.name }}</p>
           <div class="flex flex-wrap gap-2 mb-5">
             <button
               v-for="color in selectedProduct?.colors"
@@ -181,18 +183,18 @@
               :class="[
                 'px-4 py-2.5 rounded-xl border font-poppins text-sm font-semibold transition-all',
                 selectedSizes.includes(color)
-                  ? 'bg-pikiitos-brown text-white border-pikiitos-brown'
-                  : 'bg-white text-pikiitos-brown border-pikiitos-cream/60 hover:bg-pikiitos-brown hover:text-white hover:border-pikiitos-brown'
+                  ? 'bg-falcar-brown text-white border-falcar-brown'
+                  : 'bg-white text-falcar-brown border-falcar-cream/60 hover:bg-falcar-brown hover:text-white hover:border-falcar-brown'
               ]"
             >
               {{ color }}
             </button>
           </div>
-          <p v-if="selectedSizes.length > 0" class="font-poppins text-xs text-pikiitos-text-muted mb-3 text-center">{{ selectedSizes.length }} talla(s) seleccionada(s)</p>
-          <button @click="confirmAddToCart" :disabled="selectedSizes.length === 0" :class="['w-full py-2.5 rounded-xl font-poppins text-sm font-medium transition-all mb-2', selectedSizes.length > 0 ? 'bg-pikiitos-brown text-white hover:bg-pikiitos-yellow hover:text-pikiitos-brown' : 'bg-gray-200 text-gray-400 cursor-not-allowed']">
+          <p v-if="selectedSizes.length > 0" class="font-poppins text-xs text-falcar-text-muted mb-3 text-center">{{ selectedSizes.length }} talla(s) seleccionada(s)</p>
+          <button @click="confirmAddToCart" :disabled="selectedSizes.length === 0" :class="['w-full py-2.5 rounded-xl font-poppins text-sm font-medium transition-all mb-2', selectedSizes.length > 0 ? 'bg-falcar-brown text-white hover:bg-falcar-yellow hover:text-falcar-brown' : 'bg-gray-200 text-gray-400 cursor-not-allowed']">
             Agregar al carrito
           </button>
-          <button @click="showSizeModal = false; selectedSizes = []" class="w-full py-2.5 rounded-xl border border-pikiitos-cream/60 text-pikiitos-text-light font-poppins text-sm font-medium hover:bg-pikiitos-cream/30 transition-all">
+          <button @click="showSizeModal = false; selectedSizes = []" class="w-full py-2.5 rounded-xl border border-falcar-cream/60 text-falcar-text-light font-poppins text-sm font-medium hover:bg-falcar-cream/30 transition-all">
             Cancelar
           </button>
         </div>
@@ -207,6 +209,7 @@ import { useProducts } from '@/composables/useProducts'
 import { useQuotation } from '@/composables/useQuotation'
 import { useProductQuickView } from '@/composables/useProductQuickView'
 import type { Product } from '@/types/ProductType'
+import { getCategoryStyle } from '@/utils/categoryStyles'
 
 const props = defineProps<{ slug: string; title?: string }>()
 
@@ -223,12 +226,12 @@ const selectedStatus = ref<'all' | 'available' | 'coming-soon'>('all')
 const showOnlyFavorites = ref(false)
 const currentPage = ref(1)
 const perPage = 12
-const favorites = ref<Set<string>>(new Set(JSON.parse(localStorage.getItem('pikiitos-favorites') || '[]')))
+const favorites = ref<Set<string>>(new Set(JSON.parse(localStorage.getItem('falcar-favorites') || '[]')))
 const showSizeModal = ref(false)
 const selectedProduct = ref<Product | null>(null)
 const selectedSizes = ref<string[]>([])
 
-const placeholderImage = 'https://placehold.co/400x300/f5f0e8/8B7355?text=Pikiitos'
+const placeholderImage = 'https://placehold.co/400x300/f4f6fa/052A75?text=FALCAR'
 
 const priceOptions = [
   { value: 'all' as const, label: 'Todos' },
@@ -274,18 +277,18 @@ const categoryImage = computed(() => {
     return currentCategory.value.imageUrls[0]
   }
   if (isShowAll.value) {
-    return 'https://res.cloudinary.com/dlwzazojt/image/upload/v1787460163/pikiitos-_skfi4d.jpg'
+    return 'https://res.cloudinary.com/dlwzazojt/image/upload/v1794342184/Gemini_Generated_Image_kp9ur5kp9ur5kp9u_dddiez.jpg'
   }
   if (isOfertas.value) {
-    return 'https://res.cloudinary.com/dlwzazojt/image/upload/v1787456615/Gemini_Generated_Image_k4dtm7k4dtm7k4dt_dlylxe.jpg'
+    return 'https://res.cloudinary.com/dlwzazojt/image/upload/v1794342093/Gemini_Generated_Image_h8wcylh8wcylh8wc_dvw2aa.jpg'
   }
   return null
 })
 
 const pageDescription = computed(() => {
   if (currentCategory.value?.description) return currentCategory.value.description
-  if (isShowAll.value) return 'Descubre toda nuestra coleccion de ropa infantil. Prendas con disenos unicos, materiales suaves y la mejor calidad para que los mas pequenos vistan con comodidad y estilo en cada ocasion.'
-  if (isOfertas.value) return 'Aprovecha nuestras ofertas especiales de pikiitos. Descuentos exclusivos de alta calidad para que vistan a tus peques con estilo ahorrando. No te pierdas estas promociones por tiempo limitado.'
+  if (isShowAll.value) return 'Descubre toda nuestra coleccion de productos y juguetes. Articulos de alta calidad, confiables y con la mejor relacion precio-valor para toda la familia.'
+  if (isOfertas.value) return 'Aprovecha nuestras ofertas especiales de FALCAR GROUP. Descuentos exclusivos en productos de alta calidad. No te pierdas estas promociones por tiempo limitado.'
   return ''
 })
 
@@ -352,6 +355,10 @@ const visiblePages = computed(() => {
 
 function categoryName(categoryId: string): string {
   return categories.value.find(c => String(c.id) === String(categoryId))?.name?.toUpperCase() || ''
+}
+
+function categoryStyleOf(categoryId: string) {
+  return getCategoryStyle(categoryName(categoryId), categoryId)
 }
 
 function addProductToCart(p: Product) {
@@ -438,7 +445,7 @@ function toggleFavorite(id: string) {
     favorites.value.add(id)
   }
   favorites.value = new Set(favorites.value)
-  localStorage.setItem('pikiitos-favorites', JSON.stringify([...favorites.value]))
+  localStorage.setItem('falcar-favorites', JSON.stringify([...favorites.value]))
 }
 
 watch([searchTerm, selectedPriceRange, selectedStatus, showOnlyFavorites, sortBy], () => { currentPage.value = 1 })
@@ -465,7 +472,7 @@ defineOptions({ name: 'CategoryProductsView' })
 .category-page {
   width: 100%;
   padding-top: 10px;
-  background: #FFF8E8;
+  background: #F4F6FA;
   min-height: 100vh;
 }
 
@@ -486,8 +493,8 @@ defineOptions({ name: 'CategoryProductsView' })
   background: white;
   border-radius: 16px;
   padding: 1.25rem;
-  box-shadow: 0 4px 20px rgba(139, 115, 85, 0.08);
-  border: 1px solid rgba(215, 172, 67, 0.12);
+  box-shadow: 0 4px 20px rgba(5, 42, 117, 0.08);
+  border: 1px solid rgba(212, 155, 39, 0.12);
   height: fit-content;
   position: sticky;
   top: 100px;
@@ -495,24 +502,24 @@ defineOptions({ name: 'CategoryProductsView' })
 
 .sidebar-title {
   margin: 0 0 1rem;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #4A3728;
+  color: #052A75;
 }
 
 .search-box {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #FFF8E8;
-  border: 1px solid rgba(215, 172, 67, 0.2);
+  background: #F4F6FA;
+  border: 1px solid rgba(212, 155, 39, 0.2);
   border-radius: 999px;
   padding: 0.5rem 0.75rem;
   margin-bottom: 1.25rem;
 }
 
-.search-icon { color: #8B7355; flex-shrink: 0; }
+.search-icon { color: #7A8AAB; flex-shrink: 0; }
 
 .search-input {
   border: 0;
@@ -520,17 +527,17 @@ defineOptions({ name: 'CategoryProductsView' })
   width: 100%;
   font-size: 0.85rem;
   background: transparent;
-  color: #4A3728;
-  font-family: 'Poppins', sans-serif;
+  color: #052A75;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.search-input::placeholder { color: #8B7355; opacity: 0.6; }
+.search-input::placeholder { color: #7A8AAB; opacity: 0.6; }
 
 .filter-label {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #4A3728;
+  color: #052A75;
   margin: 0 0 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -543,13 +550,13 @@ defineOptions({ name: 'CategoryProductsView' })
   align-items: center;
   gap: 0.5rem;
   font-size: 0.88rem;
-  color: #6B5B4E;
+  color: #3A4A6B;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .radio-item input[type="radio"] {
-  accent-color: #D7AC43;
+  accent-color: #D49B27;
   width: 15px;
   height: 15px;
 }
@@ -559,19 +566,19 @@ defineOptions({ name: 'CategoryProductsView' })
   align-items: center;
   gap: 0.5rem;
   font-size: 0.88rem;
-  color: #6B5B4E;
+  color: #3A4A6B;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .checkbox-item input[type="checkbox"] {
-  accent-color: #D7AC43;
+  accent-color: #D49B27;
   width: 15px;
   height: 15px;
 }
 
 .fav-count {
-  background: #E88D92;
+  background: #D91E28;
   color: white;
   font-size: 0.65rem;
   font-weight: 700;
@@ -587,9 +594,9 @@ defineOptions({ name: 'CategoryProductsView' })
   height: 40px;
   border-radius: 999px;
   background: white;
-  border: 1px solid rgba(215, 172, 67, 0.3);
-  color: #4A3728;
-  font-family: 'Poppins', sans-serif;
+  border: 1px solid rgba(212, 155, 39, 0.3);
+  color: #052A75;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
@@ -597,8 +604,8 @@ defineOptions({ name: 'CategoryProductsView' })
 }
 
 .clear-btn:hover {
-  background: #FFF8E8;
-  border-color: #D7AC43;
+  background: #F4F6FA;
+  border-color: #D49B27;
 }
 
 .content { min-width: 0; }
@@ -611,8 +618,8 @@ defineOptions({ name: 'CategoryProductsView' })
   background: white;
   border-radius: 18px;
   padding: 1.5rem 2rem;
-  box-shadow: 0 4px 20px rgba(139, 115, 85, 0.08);
-  border: 1px solid rgba(215, 172, 67, 0.12);
+  box-shadow: 0 4px 20px rgba(5, 42, 117, 0.08);
+  border: 1px solid rgba(212, 155, 39, 0.12);
   margin-bottom: 1rem;
   overflow: hidden;
 }
@@ -627,17 +634,17 @@ defineOptions({ name: 'CategoryProductsView' })
 
 .category-title {
   margin: 0;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
-  color: #4A3728;
+  color: #052A75;
 }
 
 .category-description {
   margin: 0.9rem 5rem 1rem 0;
-  color: #6B5B4E;
+  color: #3A4A6B;
   line-height: 1.6;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.92rem;
   text-align: justify;
 }
@@ -648,10 +655,10 @@ defineOptions({ name: 'CategoryProductsView' })
   gap: 0.4rem;
   margin-top: 1rem;
   padding: 0.6rem 1.5rem;
-  background: #4A3728;
+  background: #052A75;
   color: white;
   border-radius: 999px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 0.85rem;
   text-decoration: none;
@@ -660,7 +667,7 @@ defineOptions({ name: 'CategoryProductsView' })
 }
 
 .category-hero-btn:hover {
-  background: #D7AC43;
+  background: #D49B27;
   transform: translateY(-1px);
 }
 
@@ -668,7 +675,7 @@ defineOptions({ name: 'CategoryProductsView' })
   width: 110%;
   border-radius: 14px;
   overflow: hidden;
-  background: #FFF8E8;
+  background: #F4F6FA;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -696,28 +703,28 @@ defineOptions({ name: 'CategoryProductsView' })
 
 .meta-text {
   font-size: 0.88rem;
-  color: #6B5B4E;
-  font-family: 'Poppins', sans-serif;
+  color: #3A4A6B;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.meta-text strong { color: #4A3728; font-weight: 700; }
+.meta-text strong { color: #052A75; font-weight: 700; }
 
 .sort { display: flex; align-items: center; gap: 0.5rem; }
 
 .sort-label {
   font-size: 0.85rem;
-  color: #6B5B4E;
-  font-family: 'Poppins', sans-serif;
+  color: #3A4A6B;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .sort-select {
   height: 40px;
   border-radius: 999px;
-  border: 1px solid rgba(215, 172, 67, 0.2);
+  border: 1px solid rgba(212, 155, 39, 0.2);
   padding: 0 0.9rem;
   background: white;
-  color: #4A3728;
-  font-family: 'Poppins', sans-serif;
+  color: #052A75;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.85rem;
 }
 
@@ -728,7 +735,7 @@ defineOptions({ name: 'CategoryProductsView' })
   padding: 0.75rem 1rem;
   border-radius: 12px;
   margin-bottom: 1rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.88rem;
 }
 
@@ -746,14 +753,14 @@ defineOptions({ name: 'CategoryProductsView' })
   position: relative;
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(139, 115, 85, 0.08);
-  border: 1px solid rgba(215, 172, 67, 0.1);
+  box-shadow: 0 4px 20px rgba(5, 42, 117, 0.08);
+  border: 1px solid rgba(212, 155, 39, 0.1);
   transition: all 0.3s;
   aspect-ratio: 3 / 5;
 }
 
 .card:hover {
-  box-shadow: 0 8px 30px rgba(139, 115, 85, 0.2);
+  box-shadow: 0 8px 30px rgba(5, 42, 117, 0.2);
   transform: translateY(-3px);
 }
 
@@ -778,17 +785,32 @@ defineOptions({ name: 'CategoryProductsView' })
   background: linear-gradient(to top, rgba(30, 20, 10, 0.75) 0%, rgba(30, 20, 10, 0.15) 50%, transparent 100%);
 }
 
+.card-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  z-index: 3;
+}
+
 .discount-badge {
   position: absolute;
   top: 0.7rem;
   left: 0.7rem;
   padding: 0.3rem 0.65rem;
-  background: linear-gradient(135deg, #E88D92, #D4738A);
+  background: linear-gradient(135deg, #D91E28, #B01820);
   color: white;
   font-size: 0.75rem;
   font-weight: 700;
   border-radius: 8px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   z-index: 2;
 }
 
@@ -800,7 +822,7 @@ defineOptions({ name: 'CategoryProductsView' })
   font-size: 0.7rem;
   font-weight: 700;
   border-radius: 8px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   z-index: 2;
 }
 
@@ -845,11 +867,14 @@ defineOptions({ name: 'CategoryProductsView' })
 }
 
 .cat-label {
-  font-size: 0.80rem;
+  display: inline-block;
+  font-size: 0.72rem;
   letter-spacing: 0.5px;
   font-weight: 800;
-  color: #FFE87A;
-  font-family: 'Poppins', sans-serif;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
 }
 
 .prod-name {
@@ -857,7 +882,7 @@ defineOptions({ name: 'CategoryProductsView' })
   font-size: 1.35rem;
   font-weight: 700;
   color: white;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -874,7 +899,7 @@ defineOptions({ name: 'CategoryProductsView' })
 }
 
 .price {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 1.4rem;
   color: white;
@@ -893,9 +918,9 @@ defineOptions({ name: 'CategoryProductsView' })
   height: 38px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.95);
-  color: #4A3728;
+  color: #052A75;
   border: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
@@ -903,12 +928,12 @@ defineOptions({ name: 'CategoryProductsView' })
   backdrop-filter: blur(4px);
 }
 
-.add-btn:hover { background: #D7AC43; color: white; }
+.add-btn:hover { background: #D49B27; color: white; }
 .add-btn:active { transform: scale(0.97); }
 .add-btn.disabled { background: rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); cursor: not-allowed; }
 
 .skeleton { pointer-events: none; position: relative; }
-.skeleton-img { position: absolute; inset: 0; background: linear-gradient(90deg, #f5f0e8 25%, #ece5d8 50%, #f5f0e8 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+.skeleton-img { position: absolute; inset: 0; background: linear-gradient(90deg, #eef2f8 25%, #dce4f0 50%, #eef2f8 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
 .skeleton-line { height: 12px; border-radius: 999px; background: rgba(255,255,255,0.3); margin-bottom: 8px; }
 .w30 { width: 30%; } .w40 { width: 40%; } .w60 { width: 60%; }
 
@@ -917,8 +942,8 @@ defineOptions({ name: 'CategoryProductsView' })
 .empty {
   text-align: center;
   padding: 3rem 0;
-  color: #6B5B4E;
-  font-family: 'Poppins', sans-serif;
+  color: #3A4A6B;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .pagination {
@@ -933,19 +958,19 @@ defineOptions({ name: 'CategoryProductsView' })
   min-width: 38px;
   height: 38px;
   border-radius: 10px;
-  border: 1px solid rgba(215, 172, 67, 0.2);
+  border: 1px solid rgba(212, 155, 39, 0.2);
   background: white;
-  color: #6B5B4E;
-  font-family: 'Poppins', sans-serif;
+  color: #3A4A6B;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.page-btn:hover:not(:disabled) { background: #FFF8E8; border-color: #D7AC43; }
+.page-btn:hover:not(:disabled) { background: #F4F6FA; border-color: #D49B27; }
 .page-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.page-btn.active { background: #4A3728; color: white; border-color: #4A3728; }
+.page-btn.active { background: #052A75; color: white; border-color: #052A75; }
 
 /* ===== MOBILE STYLES ===== */
 @media (max-width: 640px) {

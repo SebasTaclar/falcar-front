@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import type { Brand } from '@/types/BrandType'
 import defaultBrands from '@/data/brands.json'
 
-const STORAGE_KEY = 'pikiitos_brands'
+const STORAGE_KEY = 'falcar_brands'
 
 // Estado global de marcas
 const brands = ref<Brand[]>([])

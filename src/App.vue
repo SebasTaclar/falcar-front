@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-pikiitos-cream">
+  <div class="min-h-screen bg-falcar-cream">
     <Navbar v-if="!isAdminRoute" />
 
     <RouterView />

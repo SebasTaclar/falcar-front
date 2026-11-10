@@ -275,7 +275,7 @@ onBeforeUnmount(() => {
   position: absolute;
   inset: 0;
   border: 0;
-  background: rgba(74, 55, 40, 0.5);
+  background: rgba(5, 42, 117, 0.5);
   backdrop-filter: blur(8px);
 }
 
@@ -287,9 +287,9 @@ onBeforeUnmount(() => {
   display: grid;
   gap: 12px;
   background: #ffffff;
-  border: 1px solid #f5edd8;
+  border: 1px solid rgba(212, 155, 39, 0.25);
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(74, 55, 40, 0.2);
+  box-shadow: 0 20px 60px rgba(5, 42, 117, 0.2);
 }
 
 .search-top {
@@ -308,23 +308,23 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 50px;
   border-radius: 14px;
-  border: 2px solid #f5edd8;
-  background: #fff8e8;
+  border: 2px solid rgba(212, 155, 39, 0.25);
+  background: #F4F6FA;
   padding: 0 92px 0 16px;
   font-size: 0.95rem;
-  font-family: 'Poppins', sans-serif;
-  color: #4A3728;
+  font-family: 'Open Sans', sans-serif;
+  color: #052A75;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .search-overlay-input::placeholder {
-  color: #8B7355;
+  color: #7A8AAB;
 }
 
 .search-overlay-input:focus {
-  border-color: #D7AC43;
-  box-shadow: 0 0 0 3px rgba(215, 172, 67, 0.2);
+  border-color: #D49B27;
+  box-shadow: 0 0 0 3px rgba(212, 155, 39, 0.2);
 }
 
 .search-overlay-submit {
@@ -336,7 +336,7 @@ onBeforeUnmount(() => {
   height: 34px;
   border: 0;
   background: transparent;
-  color: #8B7355;
+  color: #7A8AAB;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -352,7 +352,7 @@ onBeforeUnmount(() => {
   height: 34px;
   border: 0;
   background: transparent;
-  color: #8B7355;
+  color: #7A8AAB;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -363,9 +363,9 @@ onBeforeUnmount(() => {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  border: 2px solid #f5edd8;
-  background: #fff8e8;
-  color: #4A3728;
+  border: 2px solid rgba(212, 155, 39, 0.25);
+  background: #F4F6FA;
+  color: #052A75;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -374,9 +374,9 @@ onBeforeUnmount(() => {
 }
 
 .search-overlay-close:hover {
-  background: #4A3728;
+  background: #052A75;
   color: #fff;
-  border-color: #4A3728;
+  border-color: #052A75;
 }
 
 .search-suggestions {
@@ -389,17 +389,17 @@ onBeforeUnmount(() => {
 
 .search-suggestions-label {
   font-size: 0.85rem;
-  color: #8B7355;
-  font-family: 'Poppins', sans-serif;
+  color: #7A8AAB;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .search-suggestion {
-  border: 1px solid #f5edd8;
-  background: #fff8e8;
+  border: 1px solid rgba(212, 155, 39, 0.25);
+  background: #F4F6FA;
   cursor: pointer;
-  color: #4A3728;
+  color: #052A75;
   font-size: 0.8rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -409,9 +409,9 @@ onBeforeUnmount(() => {
 }
 
 .search-suggestion:hover {
-  background: #D7AC43;
+  background: #D49B27;
   color: #fff;
-  border-color: #D7AC43;
+  border-color: #D49B27;
 }
 
 .search-results {
@@ -422,8 +422,8 @@ onBeforeUnmount(() => {
 
 .search-state {
   padding: 18px 4px;
-  color: #8B7355;
-  font-family: 'Poppins', sans-serif;
+  color: #7A8AAB;
+  font-family: 'Open Sans', sans-serif;
   text-align: center;
 }
 
@@ -440,7 +440,7 @@ onBeforeUnmount(() => {
 
 .result-card {
   border: 0;
-  background: #fff8e8;
+  background: #F4F6FA;
   cursor: pointer;
   text-align: left;
   border-radius: 14px;
@@ -450,14 +450,14 @@ onBeforeUnmount(() => {
 
 .result-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(74, 55, 40, 0.12);
+  box-shadow: 0 8px 24px rgba(5, 42, 117, 0.12);
 }
 
 .result-image {
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: #f5edd8;
+  background: rgba(212, 155, 39, 0.25);
 }
 
 .result-image img {
@@ -474,24 +474,24 @@ onBeforeUnmount(() => {
 .result-name {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #4A3728;
-  font-family: 'Fredoka', sans-serif;
+  color: #052A75;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .result-category {
   font-size: 0.7rem;
-  color: #D7AC43;
+  color: #D49B27;
   letter-spacing: 0.05em;
   margin-top: 2px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 600;
 }
 
 .result-price {
   font-size: 0.85rem;
-  color: #4A3728;
+  color: #052A75;
   margin-top: 4px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
 }
 

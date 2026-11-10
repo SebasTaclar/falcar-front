@@ -1,29 +1,26 @@
 <template>
-  <footer class="bg-pikiitos-brown text-white pt-10 lg:pt-20 pb-8">
+  <footer class="bg-falcar-brown text-white pt-10 lg:pt-20 pb-8">
     <div class="section-padding">
       <div class="section-container">
         <!-- Main Footer Content -->
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-12 mb-8 lg:mb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-x-6 gap-y-0 lg:gap-12 mb-8 lg:mb-12">
           <!-- Brand Column -->
-          <div class="text-center lg:text-left">
-            <div class="flex items-center justify-center lg:justify-start gap-2 mb-4 lg:mb-5">
-              <img src="@/assets/logo-pollito.png" alt="Pikiitos Logo" class="w-14 h-14 lg:w-20 lg:h-20 rounded-full object-cover" />
-              <span class="font-fredoka font-semibold text-white text-2xl lg:text-[2.3rem]">Pikiitos</span>
+          <div class="text-center lg:text-left mb-2 lg:mb-0">
+            <div class="flex items-center justify-center lg:justify-start mb-2 lg:mb-3 -mt-4 lg:-mt-10">
+              <img src="/images/falcar.jpeg" alt="FALCAR GROUP S.A.S. Logo" class="w-48 h-28 lg:w-42 lg:h-32 rounded-full object-cover" />
             </div>
-            <p class="font-poppins text-white/60 text-xs lg:text-sm leading-relaxed mb-4 lg:mb-6 max-w-xs mx-auto lg:mx-0">
-              Ropa infantil diseñada con amor para que cada momento sea un recuerdo inolvidable!.
+            <p class="font-poppins text-white/60 text-[10px] lg:text-xs leading-relaxed mb-3 lg:mb-4 max-w-[16rem] mx-auto lg:mx-0">
+              Soluciones integrales de alta calidad, productos confiables y venta de juguetes.
             </p>
-
-            <!-- Social Media -->
             <p class="font-poppins text-white/50 text-[10px] lg:text-xs mb-2 lg:mb-3">Síguenos en nuestras redes</p>
-            <div class="flex gap-2 lg:gap-3 justify-center lg:justify-start">
+            <div class="flex gap-2 lg:gap-3 justify-center lg:justify-start mb-4 lg:mb-6">
               <a
                 v-for="social in socials"
                 :key="social.name"
                 :href="social.url"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-8 h-8 lg:w-10 lg:h-10 rounded-lg lg:rounded-xl bg-white/10 flex items-center justify-center text-white/70 hover:bg-pikiitos-yellow hover:text-pikiitos-brown transition-all duration-300 hover:-translate-y-0.5"
+                class="w-8 h-8 lg:w-10 lg:h-10 rounded-lg lg:rounded-xl bg-white/10 flex items-center justify-center text-white/70 hover:bg-falcar-yellow hover:text-falcar-brown transition-all duration-300 hover:-translate-y-0.5"
                 :aria-label="social.name"
               >
                 <svg v-if="social.name === 'Instagram'" class="w-4 h-4 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
@@ -34,15 +31,34 @@
           </div>
 
           <!-- Links Columns -->
-          <div v-for="section in footerLinks" :key="section.title" class="text-center lg:text-left">
-            <h3 class="font-nunito font-bold text-xs lg:text-sm uppercase tracking-wider text-white/90 mb-3 lg:mb-4">
-              {{ section.title }}
-            </h3>
-            <ul class="footer-links-grid">
+          <div v-for="section in footerLinks" :key="section.title" class="text-center lg:text-left py-3 lg:py-0 border-b border-white/10 last:border-b-0 lg:border-0">
+            <div class="flex items-center justify-between lg:block">
+              <h3 class="font-nunito font-bold text-xs lg:text-sm uppercase tracking-wider text-white/90 lg:mb-4">
+                {{ section.title }}
+              </h3>
+              <button
+                type="button"
+                class="lg:hidden -mr-1 p-2 rounded-lg text-white/50 hover:text-falcar-yellow transition-colors"
+                :aria-expanded="isSectionOpen(section.title)"
+                :aria-label="`Sección ${section.title}`"
+                @click="toggleSection(section.title)"
+              >
+                <svg
+                  class="w-4 h-4 transition-transform duration-200"
+                  :class="{ 'rotate-180': isSectionOpen(section.title) }"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+            <ul class="footer-links-grid" :class="{ 'is-open': isSectionOpen(section.title) }">
               <li v-for="link in section.links" :key="link.label">
                 <button
                   v-if="link.action"
-                  class="font-poppins text-xs lg:text-sm text-white/50 hover:text-pikiitos-yellow transition-colors duration-200"
+                  class="footer-link"
                   @click="link.action"
                 >
                   {{ link.label }}
@@ -50,7 +66,7 @@
                 <RouterLink
                   v-else
                   :to="link.to"
-                  class="font-poppins text-xs lg:text-sm text-white/50 hover:text-pikiitos-yellow transition-colors duration-200"
+                  class="footer-link"
                 >
                   {{ link.label }}
                 </RouterLink>
@@ -76,7 +92,7 @@
         <!-- Bottom Bar -->
         <div class="border-t border-white/10 pt-6 lg:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 lg:gap-4">
           <p class="font-poppins text-[10px] lg:text-xs text-white/40 text-center sm:text-left">
-            &copy; {{ currentYear }} Pikiitos. Todos los derechos reservados. Hecho con 💛 para los más pequeños. | Desarrollado por: <a href="https://www.dataor.org/" target="_blank" rel="noopener noreferrer" class="hover:text-white/70 transition-colors">DataOr</a>
+            &copy; {{ currentYear }} FALCAR GROUP S.A.S. Todos los derechos reservados. | Desarrollado por: <a href="https://www.dataor.org/" target="_blank" rel="noopener noreferrer" class="hover:text-white/70 transition-colors">DataOr</a>
           </p>
           <div class="flex items-center gap-3 lg:gap-4">
             <RouterLink to="/terms-and-conditions" class="font-poppins text-[10px] lg:text-xs text-white/40 hover:text-white/70 transition-colors">
@@ -108,7 +124,7 @@
                 <div class="step-number">1</div>
                 <div class="step-content">
                   <h3>Explora el catálogo</h3>
-                  <p>Explora nuestras categorías o usa el buscador para encontrar las prendas que te gustan.</p>
+                  <p>Explora nuestras categorías o usa el buscador para encontrar los productos que buscas.</p>
                 </div>
               </div>
               <div class="step">
@@ -141,7 +157,7 @@
               </div>
             </div>
             <div class="modal-help">
-              <p>¿Tienes dudas? Escríbenos por <a href="https://wa.me/573206770595?text=%F0%9F%90%A5%20%C2%A1Hola!%20Soy%20Piki%20y%20te%20doy%20la%20bienvenida%20a%20Pikiitos.%20%C2%A1Qu%C3%A9%20alegr%C3%ADa%20tenerte%20aqu%C3%AD!%20%E2%98%80%EF%B8%8F%0A%0AEstamos%20felices%20de%20ayudarte%20a%20encontrar%20prendas%20dise%C3%B1adas%20para%20acompa%C3%B1ar%20los%20momentos%20m%C3%A1s%20bonitos%20de%20la%20infancia.%0A%0ACu%C3%A9ntanos%20en%20qu%C3%A9%20podemos%20ayudarte%20y%20muy%20pronto%20responderemos%20tu%20mensaje." target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+              <p>¿Tienes dudas? Escríbenos por <a href="https://wa.me/573144406263?text=%C2%A1Hola!%20Bienvenido%20a%20FALCAR%20GROUP%20S.A.S.%20%F0%9F%91%8D%0A%0AEstamos%20felices%20de%20ayudarte.%20%C2%A1Cu%C3%A9ntanos%20en%20qu%C3%A9%20podemos%20ayudarte%20y%20muy%20pronto%20responderemos%20tu%20mensaje." target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
             </div>
           </div>
         </div>
@@ -156,11 +172,20 @@ import { RouterLink } from 'vue-router'
 
 const currentYear = new Date().getFullYear()
 const showHowToBuy = ref(false)
+const openSections = ref<Record<string, boolean>>({})
+
+const toggleSection = (title: string) => {
+  const isOpen = openSections.value[title]
+  openSections.value = {}
+  if (!isOpen) openSections.value[title] = true
+}
+
+const isSectionOpen = (title: string) => !!openSections.value[title]
 
 const socials = [
   { name: 'Instagram', icon: '📷', url: 'https://www.instagram.com/pikiitos.co?igsi=MWljd2NsY3p6NTJvcQ%3D%3D&utm_source=qr' },
   { name: 'TikTok', icon: '🎵', url: 'https://www.tiktok.com/@pikiitos?_r=1&_t=ZS-994hJPhcsEu' },
-  { name: 'WhatsApp', icon: '💬', url: 'https://wa.me/573206770595?text=%F0%9F%90%A5%20%C2%A1Hola!%20Soy%20Piki%20y%20te%20doy%20la%20bienvenida%20a%20Pikiitos.%20%C2%A1Qu%C3%A9%20alegr%C3%ADa%20tenerte%20aqu%C3%AD!%20%E2%98%80%EF%B8%8F%0A%0AEstamos%20felices%20de%20ayudarte%20a%20encontrar%20prendas%20dise%C3%B1adas%20para%20acompa%C3%B1ar%20los%20momentos%20m%C3%A1s%20bonitos%20de%20la%20infancia.%0A%0ACu%C3%A9ntanos%20en%20qu%C3%A9%20podemos%20ayudarte%20y%20muy%20pronto%20responderemos%20tu%20mensaje.' },
+  { name: 'WhatsApp', icon: '💬', url: 'https://wa.me/573144406263?text=%C2%A1Hola!%20Bienvenido%20a%20FALCAR%20GROUP%20S.A.S.%20%F0%9F%91%8D%0A%0AEstamos%20felices%20de%20ayudarte.%20%C2%A1Cu%C3%A9ntanos%20en%20qu%C3%A9%20podemos%20ayudarte%20y%20muy%20pronto%20responderemos%20tu%20mensaje.' },
 ]
 
 const footerLinks = [
@@ -209,20 +234,45 @@ defineOptions({ name: 'FooterSection' })
 
 <style scoped>
 .footer-links-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.375rem 1rem;
-  list-style-type: disc;
-  padding-left: 1rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.125rem;
+  list-style: none;
+  padding-left: 0;
+  margin: 0.25rem 0 0;
+  text-align: left;
+}
+.footer-links-grid.is-open {
+  display: flex;
 }
 .footer-links-grid li {
   padding-left: 0;
 }
-@media (min-width: 640px) {
+.footer-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0.45rem 0;
+  transition: color 0.2s ease;
+}
+.footer-link:hover {
+  color: #D49B27;
+}
+@media (min-width: 1024px) {
   .footer-links-grid {
-    display: block;
-    gap: normal;
-    row-gap: 0.375rem;
+    display: flex !important;
+    margin-top: 0;
+  }
+  .footer-link {
+    font-size: 0.875rem;
+    padding: 0.2rem 0;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .footer-link:hover {
+    color: #D49B27;
   }
 }
 
@@ -269,14 +319,14 @@ defineOptions({ name: 'FooterSection' })
 
 .modal-header h2 {
   margin: 0;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   color: #4A3728;
 }
 
 .modal-close {
-  background: #FFF8E8;
+  background: #F4F6FA;
   border: none;
   border-radius: 10px;
   padding: 0.5rem;
@@ -313,9 +363,9 @@ defineOptions({ name: 'FooterSection' })
   height: 36px;
   min-width: 36px;
   border-radius: 50%;
-  background: #D7AC43;
+  background: #D49B27;
   color: #4A3728;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   display: flex;
@@ -325,7 +375,7 @@ defineOptions({ name: 'FooterSection' })
 
 .step-content h3 {
   margin: 0 0 0.25rem;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: #4A3728;
@@ -333,7 +383,7 @@ defineOptions({ name: 'FooterSection' })
 
 .step-content p {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.85rem;
   color: #8B7355;
   line-height: 1.5;
@@ -348,13 +398,13 @@ defineOptions({ name: 'FooterSection' })
 
 .modal-help p {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.85rem;
   color: #8B7355;
 }
 
 .modal-help a {
-  color: #D7AC43;
+  color: #D49B27;
   font-weight: 700;
   text-decoration: none;
 }

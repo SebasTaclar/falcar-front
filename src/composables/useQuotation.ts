@@ -28,7 +28,7 @@ export interface QuotationProduct {
   originalPrice?: number
 }
 
-const STORAGE_KEY = 'pikiitos_quotation'
+const STORAGE_KEY = 'falcar_quotation'
 
 const loadFromStorage = (): QuotationItem[] => {
   try {
@@ -57,7 +57,7 @@ watch(quotationItems, (newItems) => {
 
 function buildWhatsAppMessage(items: QuotationItem[]): string {
   const lines: string[] = []
-  lines.push('Hola Pikiitos.')
+  lines.push('Hola FALCAR GROUP S.A.S.')
   lines.push('')
   lines.push('Estoy interesado en recibir una cotización de los siguientes productos:')
   lines.push('')
@@ -176,7 +176,7 @@ export function useQuotation() {
   const sendToWhatsApp = () => {
     const message = buildWhatsAppMessage(quotationItems.value)
     const encoded = encodeURIComponent(message)
-    window.open(`https://wa.me/573206770595?text=${encoded}`, '_blank')
+    window.open(`https://wa.me/573144406263?text=${encoded}`, '_blank')
   }
 
   return {

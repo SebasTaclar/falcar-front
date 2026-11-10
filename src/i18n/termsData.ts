@@ -14,7 +14,7 @@ export type TermsPageData = {
 }
 
 export const termsEs: TermsPageData = {
-  intro: 'Queremos que tu experiencia con PIKIITOS sea fácil, clara y segura. Al realizar una compra en nuestra tienda aceptas las siguientes condiciones:',
+  intro: 'Queremos que tu experiencia con FALCAR GROUP S.A.S. sea fácil, clara y segura. Al realizar una compra en nuestra tienda aceptas las siguientes condiciones:',
   sections: [
     {
       title: '1. Productos y tallas',
@@ -42,10 +42,10 @@ export const termsEs: TermsPageData = {
       title: '4. Cambios',
       paragraphs: [
         'Puedes solicitar un cambio de talla o referencia dentro de los 15 días calendario siguientes a la entrega.',
-        'La prenda debe estar sin usar, sin lavar, con sus etiquetas originales y en perfecto estado.',
+        'El producto debe estar sin usar, con sus empaques o etiquetas originales y en perfecto estado.',
         'Los cambios están sujetos a disponibilidad.',
         'Si el cambio es por talla, color o referencia, el costo del transporte será asumido por el cliente.',
-        'Si PIKIITOS cometió un error en el pedido, nosotros asumiremos el costo correspondiente.'
+        'Si FALCAR GROUP S.A.S. cometió un error en el pedido, nosotros asumiremos el costo correspondiente.'
       ]
     },
     {
@@ -62,21 +62,21 @@ export const termsEs: TermsPageData = {
       ]
     },
     {
-      title: '7. Cuidado de las prendas',
+      title: '7. Cuidado de los productos',
       paragraphs: [
-        'Sigue siempre las instrucciones de lavado de la etiqueta.',
-        'Después de utilizar las prendas en playa o piscina, recomendamos retirar residuos de cloro, sal, arena y bloqueador para ayudar a conservarlas.'
+        'Sigue siempre las instrucciones de cuidado de la etiqueta.',
+        'Para productos usados en playa o piscina, recomendamos retirar residuos de cloro, sal, arena y bloqueador para ayudar a conservarlos.'
       ]
     }
   ],
-  outro: 'PIKIITOS 🐥\nPequeñas prendas para grandes aventuras.',
+  outro: 'FALCAR GROUP S.A.S. ✨\nConstruimos oportunidades de su mano.',
   contactTitle: '¿Necesitas ayuda?',
-  contactSubtitle: 'Puedes comunicarte con PIKIITOS a través de nuestros canales oficiales. Estaremos felices de acompañarte antes, durante y después de tu compra.',
+  contactSubtitle: 'Puedes comunicarte con FALCAR GROUP S.A.S. a través de nuestros canales oficiales. Estaremos felices de acompañarte antes, durante y después de tu compra.',
   pickupTitle: 'Recoger en tienda'
 }
 
 export const termsEn: TermsPageData = {
-  intro: 'We want your experience with PIKIITOS to be easy, clear, and secure. By making a purchase in our store, you accept the following conditions:',
+  intro: 'We want your experience with FALCAR GROUP S.A.S. to be easy, clear, and secure. By making a purchase in our store, you accept the following conditions:',
   sections: [
     {
       title: '1. Products and sizes',
@@ -104,10 +104,10 @@ export const termsEn: TermsPageData = {
       title: '4. Exchanges',
       paragraphs: [
         'You may request a size or reference exchange within 15 calendar days following delivery.',
-        'The garment must be unworn, unwashed, with its original tags and in perfect condition.',
+        'The product must be unused, with its original packaging or tags, and in perfect condition.',
         'Exchanges are subject to availability.',
         'If the exchange is for size, color, or reference, the shipping cost will be covered by the customer.',
-        'If PIKIITOS made an error in the order, we will cover the corresponding cost.'
+        'If FALCAR GROUP S.A.S. made an error in the order, we will cover the corresponding cost.'
       ]
     },
     {
@@ -124,15 +124,15 @@ export const termsEn: TermsPageData = {
       ]
     },
     {
-      title: '7. Garment care',
+      title: '7. Product care',
       paragraphs: [
-        'Always follow the washing instructions on the label.',
-        'After using garments at the beach or pool, we recommend removing chlorine, salt, sand, and sunscreen residues to help preserve them.'
+        'Always follow the care instructions on the label.',
+        'For products used at the beach or pool, we recommend removing chlorine, salt, sand, and sunscreen residues to help preserve them.'
       ]
     }
   ],
-  outro: 'PIKIITOS 🐥\nSmall garments for big adventures.',
+  outro: 'FALCAR GROUP S.A.S. ✨\nBuilding opportunities together.',
   contactTitle: 'Need help?',
-  contactSubtitle: 'You can contact PIKIITOS through our official channels. We will be happy to assist you before, during, and after your purchase.',
+  contactSubtitle: 'You can contact FALCAR GROUP S.A.S. through our official channels. We will be happy to assist you before, during, and after your purchase.',
   pickupTitle: 'Store pickup'
 }

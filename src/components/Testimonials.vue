@@ -1,11 +1,11 @@
 <template>
-  <section class="py-10 lg:py-12 bg-pikiitos-cream/30">
+  <section class="py-10 lg:py-12 bg-falcar-cream/30">
     <div class="section-padding">
       <div class="section-container">
         <!-- Section Header -->
         <div class="text-center mb-8 lg:mb-14">
-          <span class="inline-block font-poppins font-semibold text-[11px] sm:text-sm tracking-widest uppercase mb-2 sm:mb-3" style="color: #FF8E8E">Lo que dicen las familias</span>
-          <h2 class="font-fredoka font-bold text-2xl sm:text-4xl lg:text-5xl text-pikiitos-brown">
+          <span class="inline-block font-poppins font-semibold text-[11px] sm:text-sm tracking-widest uppercase mb-2 sm:mb-3" style="color: #D91E28">Lo que dicen nuestros clientes</span>
+          <h2 class="font-fredoka font-bold text-2xl sm:text-4xl lg:text-5xl text-falcar-brown">
             Testimonios
           </h2>
         </div>
@@ -25,14 +25,14 @@
                 <div
                   v-for="testimonial in group"
                   :key="testimonial.name"
-                  class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-soft border border-pikiitos-cream/50 transition-all duration-300 hover:shadow-soft-lg hover:-translate-y-1"
+                  class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-soft border border-falcar-cream/50 transition-all duration-300 hover:shadow-soft-lg hover:-translate-y-1"
                 >
                   <!-- Stars -->
                   <div class="flex gap-1 mb-3 sm:mb-4">
-                    <svg v-for="i in 5" :key="i" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pikiitos-yellow" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg v-for="i in 5" :key="i" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-falcar-yellow" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                   </div>
 
-                  <p class="font-poppins text-sm text-pikiitos-text-light leading-relaxed mb-4 sm:mb-6">
+                  <p class="font-poppins text-sm text-falcar-text-light leading-relaxed mb-4 sm:mb-6">
                     "{{ testimonial.text }}"
                   </p>
 
@@ -41,8 +41,8 @@
                       {{ testimonial.emoji }}
                     </div>
                     <div>
-                      <p class="font-nunito font-bold text-xs sm:text-sm text-pikiitos-brown">{{ testimonial.name }}</p>
-                      <p class="font-poppins text-[10px] sm:text-xs text-pikiitos-text-muted">{{ testimonial.role }}</p>
+                      <p class="font-nunito font-bold text-xs sm:text-sm text-falcar-brown">{{ testimonial.name }}</p>
+                      <p class="font-poppins text-[10px] sm:text-xs text-falcar-text-muted">{{ testimonial.role }}</p>
                     </div>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
               :key="index"
               @click="currentSlide = index"
               class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-300"
-              :class="currentSlide === index ? 'bg-pikiitos-yellow w-6 sm:w-8' : 'bg-pikiitos-yellow/30 hover:bg-pikiitos-yellow/50'"
+              :class="currentSlide === index ? 'bg-falcar-yellow w-6 sm:w-8' : 'bg-falcar-yellow/30 hover:bg-falcar-yellow/50'"
               :aria-label="`Grupo de testimonios ${index + 1}`"
             ></button>
           </div>
@@ -72,25 +72,25 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const testimonials = [
   {
-    name: 'Mamá PIKIITOS',
-    role: 'Mamá',
-    text: 'A mi hijo le encantó apenas lo vio. Lo más lindo fue que empezó a inventarse historias con el diseño y para él terminó siendo mucho más que un vestido de baño.',
-    emoji: '👩‍👦',
-    avatarBg: 'bg-pikiitos-pink/15',
+    name: 'Cliente FALCAR',
+    role: 'Empresa',
+    text: 'Excelente proveedor. Los productos llegaron a tiempo y con la calidad prometida. Muy buena atención y confianza en cada pedido.',
+    emoji: '🤝',
+    avatarBg: 'bg-falcar-pink/15',
   },
   {
-    name: 'Mamá PIKIITOS',
-    role: 'Mamá',
-    text: 'Me encantó encontrar un diseño infantil diferente. Tiene muchísimo color y personalidad, pero sin recurrir a los mismos personajes que uno encuentra en todas partes.',
-    emoji: '👩‍👧',
-    avatarBg: 'bg-pikiitos-baby/15',
+    name: 'Cliente FALCAR',
+    role: 'Familia',
+    text: 'Los juguetes encantaron a los niños. Se nota la calidad y el cuidado en cada producto. Sin duda volveremos a comprar.',
+    emoji: '👨‍👩‍👧',
+    avatarBg: 'bg-falcar-baby/15',
   },
   {
-    name: 'Mamá PIKIITOS',
-    role: 'Mamá',
-    text: 'Se nota que cada detalle está pensado desde el mundo de los niños. A mi hija le encantaron los colores y el diseño, y a mí me gustó encontrar algo especial y con identidad propia.',
-    emoji: '👩‍👶',
-    avatarBg: 'bg-pikiitos-mint/15',
+    name: 'Cliente FALCAR',
+    role: 'Empresa',
+    text: 'Un servicio cercano y eficiente. FALCAR GROUP nos brindó una solución integral que superó nuestras expectativas.',
+    emoji: '⭐',
+    avatarBg: 'bg-falcar-mint/15',
   },
 ]
 

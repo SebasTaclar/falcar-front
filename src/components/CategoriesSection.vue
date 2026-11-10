@@ -1,14 +1,14 @@
 <template>
-  <section id="categorias" class="py-6 lg:py-20 bg-white">
+  <section class="py-6 lg:py-20 bg-white">
     <div class="section-padding">
       <div class="section-container">
         <!-- Section Header -->
         <div class="text-center mb-14">
-          <span class="inline-block font-poppins font-semibold text-sm text-pikiitos-yellow tracking-widest uppercase mb-3">Explora por categoría</span>
-          <h2 class="font-fredoka font-bold text-3xl sm:text-4xl lg:text-5xl text-pikiitos-brown">
+          <span class="inline-block font-poppins font-semibold text-sm text-falcar-yellow tracking-widest uppercase mb-3">Explora por categoría</span>
+          <h2 class="font-fredoka font-bold text-3xl sm:text-4xl lg:text-5xl text-falcar-brown">
             Encuentra lo perfecto
           </h2>
-          <p class="font-poppins text-pikiitos-text-light mt-4 max-w-lg mx-auto text-lg">
+          <p class="font-poppins text-falcar-text-light mt-4 max-w-lg mx-auto text-lg">
             Ropa pensada para acompañar cada aventura de los más pequeños
           </p>
         </div>
@@ -77,6 +77,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import { useCategories } from '@/composables/useCategories'
+import { getCategoryStyle } from '@/utils/categoryStyles'
 
 const { categories, loading, loadCategories } = useCategories()
 
@@ -98,67 +99,28 @@ function slugify(value: string): string {
 const categoryStyles: Record<string, { emoji: string; bgClass: string; overlayClass: string }> = {
   default: {
     emoji: '👗',
-    bgClass: 'bg-gradient-to-br from-pikiitos-baby via-pikiitos-mint to-pikiitos-cream',
-    overlayClass: 'bg-pikiitos-baby/10',
+    bgClass: 'bg-gradient-to-br from-falcar-baby via-falcar-mint to-falcar-cream',
+    overlayClass: 'bg-falcar-baby/10',
   },
 }
 
+const emojisByKey = [
+  { keys: ['niña', 'nina'], emoji: '👧' },
+  { keys: ['niño', 'nino'], emoji: '👦' },
+  { keys: ['bebé', 'bebe'], emoji: '👶' },
+  { keys: ['accesorio'], emoji: '🎀' },
+  { keys: ['oferta', 'sale'], emoji: '🏷️' },
+]
+
 const getStyleForCategory = (name: string, index: number) => {
   const lower = name.toLowerCase()
-  if (lower.includes('niña') || lower.includes('nina')) {
-    return {
-      emoji: '👧',
-      bgClass: 'bg-gradient-to-br from-pink-300 via-pink-200 to-pikiitos-cream',
-      overlayClass: 'bg-pink-400/10',
-    }
-  }
-  if (lower.includes('niño') || lower.includes('nino')) {
-    return {
-      emoji: '👦',
-      bgClass: 'bg-gradient-to-br from-blue-300 via-blue-200 to-pikiitos-cream',
-      overlayClass: 'bg-blue-400/10',
-    }
-  }
-  if (lower.includes('bebé') || lower.includes('bebe')) {
-    return {
-      emoji: '👶',
-      bgClass: 'bg-gradient-to-br from-pikiitos-baby via-pikiitos-lavender/30 to-pikiitos-cream',
-      overlayClass: 'bg-pikiitos-baby/15',
-    }
-  }
-  if (lower.includes('accesorio')) {
-    return {
-      emoji: '🎀',
-      bgClass: 'bg-gradient-to-br from-pikiitos-yellow via-pikiitos-peach to-pikiitos-cream',
-      overlayClass: 'bg-pikiitos-yellow/10',
-    }
-  }
-  if (lower.includes('oferta') || lower.includes('sale')) {
-    return {
-      emoji: '🏷️',
-      bgClass: 'bg-gradient-to-br from-pikiitos-pink via-pikiitos-peach to-pikiitos-cream',
-      overlayClass: 'bg-pikiitos-pink/10',
-    }
-  }
-
-  const emojis = ['👗', '👕', '👚', '🩳', '🧒', '🎏']
-  const gradients = [
-    'bg-gradient-to-br from-pikiitos-baby via-pikiitos-mint to-pikiitos-cream',
-    'bg-gradient-to-br from-pikiitos-pink via-pikiitos-peach to-pikiitos-cream',
-    'bg-gradient-to-br from-pikiitos-yellow via-pikiitos-peach to-pikiitos-cream',
-    'bg-gradient-to-br from-pikiitos-lavender via-pikiitos-baby/30 to-pikiitos-cream',
-  ]
-  const overlays = [
-    'bg-pikiitos-baby/10',
-    'bg-pikiitos-pink/10',
-    'bg-pikiitos-yellow/10',
-    'bg-pikiitos-lavender/10',
-  ]
-
+  const style = getCategoryStyle(name, index)
+  const emojiKey = emojisByKey.find(entry => entry.keys.some(k => lower.includes(k)))
+  const fallbackEmojis = ['👗', '👕', '👚', '🩳', '🧒', '🎏']
   return {
-    emoji: emojis[index % emojis.length],
-    bgClass: gradients[index % gradients.length],
-    overlayClass: overlays[index % overlays.length],
+    emoji: emojiKey?.emoji || fallbackEmojis[index % fallbackEmojis.length],
+    bgClass: style.bgClass,
+    overlayClass: style.overlayClass,
   }
 }
 

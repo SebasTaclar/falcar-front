@@ -1,73 +1,171 @@
 <template>
-  <section id="contacto" class="pb-0 relative overflow-hidden bg-white">
-    <!-- Background image -->
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <img src="https://res.cloudinary.com/dlwzazojt/image/upload/v1787345118/Gemini_Generated_Image_nsqy02nsqy02nsqy_k4sdb4.jpg" alt="" class="newsletter-bg" />
-    </div>
+  <section class="newsletter-section relative overflow-hidden">
+    <!-- Defs compartidos para rayas doradas -->
+    <svg width="0" height="0" class="absolute w-0 h-0" aria-hidden="true">
+      <defs>
+        <g id="nl-rays" fill="none" stroke="#D49B27" stroke-width="1.4" stroke-linecap="round">
+          <path d="M0 55 L55 0" />
+          <path d="M0 90 L90 0" opacity="0.6" />
+          <path d="M0 125 L125 0" opacity="0.35" />
+          <path d="M0 158 L158 0" opacity="0.18" />
+          <path d="M30 0 L0 30" opacity="0.9" />
+          <path d="M65 0 L0 65" opacity="0.5" />
+          <rect x="38" y="38" width="42" height="42" transform="rotate(45 59 59)" opacity="0.75" />
+          <rect x="72" y="72" width="26" height="26" transform="rotate(45 85 85)" opacity="0.45" />
+          <path d="M100 0 L0 100" opacity="0.4" />
+        </g>
+        <g id="nl-rays-side" fill="none" stroke="#D49B27" stroke-width="1.3" stroke-linecap="round">
+          <path d="M0 35 L35 0" />
+          <path d="M0 70 L70 0" opacity="0.6" />
+          <path d="M0 105 L105 0" opacity="0.32" />
+          <path d="M0 138 L138 0" opacity="0.16" />
+          <path d="M0 12 L12 0" opacity="0.9" />
+          <rect x="26" y="26" width="32" height="32" transform="rotate(45 42 42)" opacity="0.65" />
+          <rect x="56" y="56" width="20" height="20" transform="rotate(45 66 66)" opacity="0.4" />
+        </g>
+        <g id="nl-rays-top" fill="none" stroke="#D49B27" stroke-width="1.3" stroke-linecap="round">
+          <path d="M70 0 L0 70" opacity="0.55" />
+          <path d="M70 0 L140 70" opacity="0.55" />
+          <path d="M40 0 L0 40" opacity="0.8" />
+          <path d="M100 0 L140 40" opacity="0.8" />
+          <path d="M70 0 L35 35" opacity="0.4" />
+          <path d="M70 0 L105 35" opacity="0.4" />
+          <rect x="55" y="18" width="30" height="30" transform="rotate(45 70 33)" opacity="0.6" />
+          <path d="M10 0 L0 10" opacity="0.9" />
+          <path d="M130 0 L140 10" opacity="0.9" />
+        </g>
+      </defs>
+    </svg>
 
-    <div class="section-padding relative z-10">
+    <!-- Esquinas -->
+    <div class="deco deco-tl" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#nl-rays" /></svg></div>
+    <div class="deco deco-tr" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#nl-rays" /></svg></div>
+    <div class="deco deco-bl" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#nl-rays" /></svg></div>
+    <div class="deco deco-br" aria-hidden="true"><svg viewBox="0 0 160 160"><use href="#nl-rays" /></svg></div>
+
+    <!-- Laterales (izquierda / derecha) -->
+    <div class="deco deco-left" aria-hidden="true"><svg viewBox="0 0 145 145"><use href="#nl-rays" /></svg></div>
+    <div class="deco deco-right" aria-hidden="true"><svg viewBox="0 0 145 145"><use href="#nl-rays" /></svg></div>
+
+    <!-- Centro superior / inferior -->
+    <div class="deco deco-top" aria-hidden="true"><svg viewBox="0 0 140 75"><use href="#nl-rays-top" /></svg></div>
+    <div class="deco deco-bottom" aria-hidden="true"><svg viewBox="0 0 140 75"><use href="#nl-rays-top" /></svg></div>
+
+    <!-- Acentos intermedios -->
+    <div class="deco deco-mid-tl" aria-hidden="true"><svg viewBox="0 0 90 90"><use href="#nl-rays-side" /></svg></div>
+    <div class="deco deco-mid-br" aria-hidden="true"><svg viewBox="0 0 90 90"><use href="#nl-rays-side" /></svg></div>
+
+    <div class="section-padding relative z-10 py-8 sm:py-10 lg:py-12">
       <div class="section-container">
-        <div class="relative overflow-hidden">
-          <!-- Decorative elements -->
-          <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div class="absolute top-6 left-8 text-4xl opacity-30 animate-float">⭐</div>
-            <div class="absolute bottom-6 right-12 text-3xl opacity-25 animate-float-slow">🐣</div>
-            <div class="absolute top-1/2 right-1/4 text-2xl opacity-20 animate-float-delayed">💛</div>
+        <div class="text-center max-w-3xl mx-auto">
+          <!-- Ancla dorada con corazón -->
+          <div class="mb-4 sm:mb-6 flex justify-center">
+            <svg class="w-12 h-12 sm:w-16 sm:h-16 animate-bounce-gentle" viewBox="0 0 64 76" aria-hidden="true">
+              <defs>
+                <linearGradient id="nl-gold" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#F2D98D" />
+                  <stop offset="0.5" stop-color="#D49B27" />
+                  <stop offset="1" stop-color="#A8781C" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M32 13.5c-2.9-4.8-9.9-6.5-14.8-3.2-4.9 3.3-5.6 10-1.7 15.1L32 35l16.5-9.6c3.9-5.1 3.2-11.8-1.7-15.1C41.9 7 34.9 8.7 32 13.5z"
+                fill="url(#nl-gold)"
+              />
+              <rect x="29.2" y="31" width="5.6" height="41" rx="2.2" fill="url(#nl-gold)" />
+              <rect x="16.5" y="40" width="31" height="5.5" rx="2.75" fill="url(#nl-gold)" />
+              <path
+                d="M13 56.5C13 69.5 21.5 75 32 75s19-5.5 19-18.5"
+                fill="none"
+                stroke="url(#nl-gold)"
+                stroke-width="6"
+                stroke-linecap="round"
+              />
+              <path d="M13 56.5 L4.5 44.5 L15.5 47 Z" fill="url(#nl-gold)" />
+              <path d="M51 56.5 L59.5 44.5 L48.5 47 Z" fill="url(#nl-gold)" />
+            </svg>
           </div>
 
-          <div class="relative z-10 px-5 py-10 sm:px-12 sm:py-16 lg:px-20 lg:pt-20 lg:pb-8 text-center">
-            <div class="mb-3 sm:mb-4 flex justify-center">
-              <div class="animate-bounce-gentle">
-                <svg class="w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 4h16a2 2 0 012 2v10a2 2 0 01-2 2H8l-4 4V6a2 2 0 012-2z" fill="white" stroke="#8B6914" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <circle cx="8.5" cy="11" r="1" fill="#8B6914"/>
-                  <circle cx="12" cy="11" r="1" fill="#8B6914"/>
-                  <circle cx="15.5" cy="11" r="1" fill="#8B6914"/>
+          <h2 class="font-fredoka font-bold text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4">
+            <span class="text-white">¡Escríbenos por</span>
+            <span class="text-falcar-yellow"> WhatsApp!</span>
+          </h2>
+
+          <p class="font-poppins text-white/85 text-sm sm:text-lg max-w-xl mx-auto mb-7 sm:mb-9 leading-relaxed">
+            Estamos listos para ayudarte. Resolvemos tus dudas y te atendemos con calidez, rápido y directo.
+          </p>
+
+          <!-- CTA WhatsApp dorado -->
+          <a
+            href="https://wa.me/573144406263?text=%C2%A1Hola!%20Bienvenido%20a%20FALCAR%20GROUP%20S.A.S.%20%F0%9F%91%8D%0A%0AEstamos%20felices%20de%20ayudarte.%20%C2%A1Cu%C3%A9ntanos%20en%20qu%C3%A9%20podemos%20ayudarte%20y%20muy%20pronto%20responderemos%20tu%20mensaje."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whatsapp-cta inline-flex items-center gap-3 sm:gap-4"
+            aria-label="Escríbenos al WhatsApp 314 440 6263"
+          >
+            <span class="cta-icon">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="#25D366" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/></svg>
+            </span>
+            <span class="flex flex-col items-start leading-tight text-left">
+              <span class="text-[11px] sm:text-xs font-poppins text-white/90">Escríbenos ahora</span>
+              <span class="text-lg sm:text-2xl font-montserrat font-extrabold tracking-wide text-white">314 440 6263</span>
+            </span>
+          </a>
+
+          <!-- Badges de beneficios -->
+          <div class="flex flex-nowrap items-stretch justify-center gap-2 sm:gap-4 mt-8 sm:mt-10">
+            <div class="feature-badge">
+              <span class="badge-icon">
+                <svg viewBox="0 0 64 76" class="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true">
+                  <path d="M32 13.5c-2.9-4.8-9.9-6.5-14.8-3.2-4.9 3.3-5.6 10-1.7 15.1L32 35l16.5-9.6c3.9-5.1 3.2-11.8-1.7-15.1C41.9 7 34.9 8.7 32 13.5z" fill="#D49B27" />
+                  <rect x="29.2" y="31" width="5.6" height="41" rx="2.2" fill="#D49B27" />
+                  <rect x="16.5" y="40" width="31" height="5.5" rx="2.75" fill="#D49B27" />
+                  <path d="M13 56.5C13 69.5 21.5 75 32 75s19-5.5 19-18.5" fill="none" stroke="#D49B27" stroke-width="6" stroke-linecap="round" />
+                  <path d="M13 56.5 L4.5 44.5 L15.5 47 Z" fill="#D49B27" />
+                  <path d="M51 56.5 L59.5 44.5 L48.5 47 Z" fill="#D49B27" />
                 </svg>
-              </div>
-            </div>
-            <h2 class="font-fredoka font-bold text-xl sm:text-3xl lg:text-4xl text-pikiitos-brown mb-3 sm:mb-4">
-              ¡Síguenos y escríbenos!
-            </h2>
-            <p class="font-poppins text-pikiitos-brown/80 text-sm sm:text-lg max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed">
-              Estamos en redes para que nos conozcas, veas novedades y nos escribas directo por WhatsApp o DM.
-            </p>
-
-            <div class="flex items-center justify-center gap-4 sm:gap-7">
-              <a
-                href="https://www.instagram.com/pikiitos.co?igsi=MWljd2NsY3p6NTJvcQ%3D%3D&utm_source=qr"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-icon-instagram"
-                aria-label="Instagram"
-              >
-                <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-              </a>
-              <a
-                href="https://www.tiktok.com/@pikiitos?_r=1&_t=ZS-994hJPhcsEu"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-icon-tiktok"
-                aria-label="TikTok"
-              >
-                <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48V13.2a8.19 8.19 0 005.58 2.16v-3.45a4.85 4.85 0 01-3.77-1.62V6.69h3.77z"/></svg>
-              </a>
-              <a
-                href="https://wa.me/573206770595?text=%F0%9F%90%A5%20%C2%A1Hola!%20Soy%20Piki%20y%20te%20doy%20la%20bienvenida%20a%20Pikiitos.%20%C2%A1Qu%C3%A9%20alegr%C3%ADa%20tenerte%20aqu%C3%AD!%20%E2%98%80%EF%B8%8F%0A%0AEstamos%20felices%20de%20ayudarte%20a%20encontrar%20prendas%20dise%C3%B1adas%20para%20acompa%C3%B1ar%20los%20momentos%20m%C3%A1s%20bonitos%20de%20la%20infancia.%0A%0ACu%C3%A9ntanos%20en%20qu%C3%A9%20podemos%20ayudarte%20y%20muy%20pronto%20responderemos%20tu%20mensaje."
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-icon-whatsapp"
-                aria-label="WhatsApp"
-              >
-                <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/></svg>
-              </a>
+              </span>
+              <span class="badge-text">
+                <span class="badge-title">Envíos a todo Colombia</span>
+                <span class="badge-sub">— Confiables y Seguros</span>
+              </span>
             </div>
 
-            <p class="font-poppins text-[10px] sm:text-xs text-pikiitos-brown/50 mt-4 sm:mt-6">
-              Estamos aquí para ayudarte con el cariño y la calidad que tus momentos se merecen.
-            </p>
+            <div class="feature-badge">
+              <span class="badge-icon">
+                <svg viewBox="0 0 24 24" class="w-5 h-5 sm:w-6 sm:h-6" fill="#D49B27" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+              <span class="badge-text">
+                <span class="badge-title">Pago seguro</span>
+                <span class="badge-sub">— Protegido y Transparente</span>
+              </span>
+            </div>
+
+            <div class="feature-badge">
+              <span class="badge-icon">
+                <svg viewBox="0 0 32 32" class="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true">
+                  <path d="M16 27C12 24 9 20 8 15" fill="none" stroke="#D49B27" stroke-width="1.8" stroke-linecap="round" />
+                  <path d="M16 27C20 24 23 20 24 15" fill="none" stroke="#D49B27" stroke-width="1.8" stroke-linecap="round" />
+                  <ellipse cx="9" cy="13" rx="2.6" ry="1.5" transform="rotate(-55 9 13)" fill="#D49B27" />
+                  <ellipse cx="10.5" cy="18" rx="2.6" ry="1.5" transform="rotate(-85 10.5 18)" fill="#D49B27" />
+                  <ellipse cx="13" cy="22.5" rx="2.6" ry="1.5" transform="rotate(-115 13 22.5)" fill="#D49B27" />
+                  <ellipse cx="23" cy="13" rx="2.6" ry="1.5" transform="rotate(55 23 13)" fill="#D49B27" />
+                  <ellipse cx="21.5" cy="18" rx="2.6" ry="1.5" transform="rotate(85 21.5 18)" fill="#D49B27" />
+                  <ellipse cx="19" cy="22.5" rx="2.6" ry="1.5" transform="rotate(115 19 22.5)" fill="#D49B27" />
+                </svg>
+              </span>
+              <span class="badge-text">
+                <span class="badge-title">Alta calidad</span>
+                <span class="badge-sub">— Excelencia y Compromiso</span>
+              </span>
+            </div>
           </div>
-          <img src="https://res.cloudinary.com/dlwzazojt/image/upload/v1787453977/96A945A1-CD4D-4E20-A5D0-EE961FE96C2F_ievxbd.png" alt="Pikiitos" class="pollito-img pointer-events-none" />
+
+          <p class="font-poppins text-[10px] sm:text-xs text-white/65 mt-7 sm:mt-9">
+            Estamos aquí para ayudarte con soluciones de calidad que generan valor real.
+          </p>
         </div>
       </div>
     </div>
@@ -79,75 +177,233 @@ defineOptions({ name: 'NewsletterSection' })
 </script>
 
 <style scoped>
-.newsletter-bg {
+.newsletter-section {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0,
+      transparent 52px,
+      rgba(212, 155, 39, 0.06) 52px,
+      rgba(212, 155, 39, 0.06) 53px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 72px,
+      rgba(212, 155, 39, 0.04) 72px,
+      rgba(212, 155, 39, 0.04) 73px
+    ),
+    linear-gradient(160deg, #06308a 0%, #052a75 45%, #031f58 100%);
+}
+
+.deco {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.95;
+}
+.deco svg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.15;
+  display: block;
+}
+
+.deco-tl,
+.deco-tr,
+.deco-bl,
+.deco-br {
+  width: 130px;
+  height: 130px;
+}
+.deco-left,
+.deco-right,
+.deco-top,
+.deco-bottom {
+  width: 120px;
+  height: 120px;
+}
+.deco-mid-tl,
+.deco-mid-br {
+  width: 80px;
+  height: 80px;
+  opacity: 0.7;
 }
 @media (min-width: 640px) {
-  .newsletter-bg {
-    object-fit: contain;
-    height: auto;
+  .deco-tl,
+  .deco-tr,
+  .deco-bl,
+  .deco-br {
+    width: 170px;
+    height: 170px;
+  }
+  .deco-left,
+  .deco-right {
+    width: 150px;
+    height: 150px;
+  }
+  .deco-top,
+  .deco-bottom {
+    width: 160px;
+    height: 90px;
+  }
+  .deco-mid-tl,
+  .deco-mid-br {
+    width: 100px;
+    height: 100px;
   }
 }
 
-.pollito-img {
-  position: absolute;
-  top: 15px;
+.deco-tl {
+  top: 0;
+  left: 0;
+}
+.deco-tr {
+  top: 0;
   right: 0;
-  width: 7rem;
-  height: auto;
-  object-fit: contain;
+  transform: scaleX(-1);
 }
-@media (min-width: 640px) {
-  .pollito-img {
-    top: 2.5rem;
-    right: 0;
-    width: 12rem;
-  }
+.deco-bl {
+  bottom: 0;
+  left: 0;
+  transform: scaleY(-1);
 }
-@media (min-width: 1024px) {
-  .pollito-img {
-    width: 16rem;
-  }
+.deco-br {
+  bottom: 0;
+  right: 0;
+  transform: scale(-1, -1);
+}
+.deco-left {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.deco-right {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1);
+}
+.deco-top {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.deco-bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleY(-1);
+}
+.deco-mid-tl {
+  top: 18%;
+  left: 12%;
+}
+.deco-mid-br {
+  bottom: 18%;
+  right: 12%;
+  transform: scale(-1, -1);
 }
 
-.social-icon-instagram,
-.social-icon-tiktok,
-.social-icon-whatsapp {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.whatsapp-cta {
+  background: linear-gradient(180deg, #f0c05a 0%, #d49b27 55%, #b8861f 100%);
   color: white;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  padding: 0.7rem 1.6rem;
+  border-radius: 9999px;
+  box-shadow: 0 10px 30px rgba(212, 155, 39, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
   transition: all 0.3s ease;
 }
 @media (min-width: 640px) {
-  .social-icon-instagram,
-  .social-icon-tiktok,
-  .social-icon-whatsapp {
-    width: 3.5rem;
-    height: 3.5rem;
+  .whatsapp-cta {
+    padding: 0.85rem 2.4rem;
   }
 }
-.social-icon-instagram:hover,
-.social-icon-tiktok:hover,
-.social-icon-whatsapp:hover {
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+.whatsapp-cta:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 36px rgba(212, 155, 39, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
-.social-icon-instagram {
-  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+
+.cta-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-.social-icon-tiktok {
-  background: linear-gradient(135deg, #010101, #69C9D0, #EE1D52);
+@media (min-width: 640px) {
+  .cta-icon {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
 }
-.social-icon-whatsapp {
-  background: linear-gradient(135deg, #25D366, #128C7E);
+
+.feature-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: white;
+  padding: 0.45rem 0.55rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(3, 20, 55, 0.25);
+  text-align: left;
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: center;
+}
+@media (min-width: 640px) {
+  .feature-badge {
+    padding: 0.65rem 1.25rem;
+    gap: 0.65rem;
+    flex: 0 1 auto;
+    justify-content: flex-start;
+  }
+}
+
+.badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.badge-icon svg {
+  width: 14px;
+  height: 14px;
+}
+@media (min-width: 640px) {
+  .badge-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  min-width: 0;
+}
+
+.badge-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 0.55rem;
+  color: #052a75;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 640px) {
+  .badge-title {
+    font-size: 0.8rem;
+  }
+}
+
+.badge-sub {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.5rem;
+  color: #7a8aab;
+}
+@media (min-width: 640px) {
+  .badge-sub {
+    font-size: 0.72rem;
+  }
 }
 </style>

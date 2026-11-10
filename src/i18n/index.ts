@@ -2,13 +2,13 @@ import { createI18n } from 'vue-i18n'
 
 export type SupportedLocale = 'es' | 'en'
 
-const STORAGE_KEY = 'pikiitos_locale'
+const STORAGE_KEY = 'falcar_locale'
 
 const messages = {
 	es: {
-		brand: {
-			tagline: 'Ropa infantil con amor'
-		},
+			brand: {
+				tagline: 'Soluciones integrales con excelencia'
+			},
 		nav: {
 			newArrivals: 'Novedades',
 			collections: 'Colecciones',
@@ -22,27 +22,27 @@ const messages = {
 			hello: 'Hola, {name}'
 		},
 		banner: {
-			tagline: 'Donde cada prenda cuenta una historia de amor',
+			tagline: 'Donde cada proyecto genera valor real',
 			explore: 'EXPLORAR COLECCIÓN',
 			learnMore: 'CONOCER MÁS',
 			scrollDown: 'Desliza',
-			logoAlt: 'Pikiitos'
+			logoAlt: 'FALCAR GROUP'
 		},
 		visit: {
 			title: 'Visítanos',
-			subtitle: 'Pikiitos: ven por la mejor ropa para tus peques.',
+			subtitle: 'FALCAR GROUP: soluciones integrales y juguetes de calidad.',
 			addressLabel: 'Dirección',
 			phoneLabel: 'Teléfono',
 			emailLabel: 'Correo',
 			hoursLabel: 'Horarios'
 		},
 		footer: {
-			description: 'Ropa infantil diseñada con amor para que cada momento sea un recuerdo inolvidable.',
+			description: 'Soluciones integrales de alta calidad, productos confiables y venta de juguetes. Bienestar para familias e industrias.',
 			followUs: 'Síguenos',
 			quickLinks: 'Enlaces Rápidos',
 			customerSupport: 'Atención al Cliente',
-			madeWith: 'Pequeños momentos, grandes recuerdos ✨',
-			copyright: '© {year} Pikiitos. Todos los derechos reservados.',
+			madeWith: 'Construimos oportunidades ✨',
+			copyright: '© {year} FALCAR GROUP S.A.S. Todos los derechos reservados.',
 			links: {
 				products: 'Productos',
 				categories: 'Categorías',
@@ -56,7 +56,7 @@ const messages = {
 		},
 		whatsapp: {
 			defaultMessage:
-				'🐥 ¡Hola, PIKIITOS! 💛 Creo que encontré la próxima aventura de mi peque 🌊☀️ ¿Me ayudan a elegir?\nNecesito asesoría 🐣💛'
+				'¡Hola, FALCAR GROUP! Me interesa conocer sus soluciones integrales y productos. ¿Me pueden ayudar?\nNecesito asesoría, por favor.'
 		},
 		store: {
 			pickup: {
@@ -146,7 +146,7 @@ const messages = {
 	},
 	en: {
 		brand: {
-			tagline: 'Children\'s clothing with love'
+			tagline: 'Integrated solutions with excellence'
 		},
 		nav: {
 			newArrivals: 'New Arrivals',
@@ -165,23 +165,23 @@ const messages = {
 			explore: 'EXPLORE COLLECTION',
 			learnMore: 'LEARN MORE',
 			scrollDown: 'Scroll',
-			logoAlt: 'Pikiitos'
+			logoAlt: 'FALCAR GROUP'
 		},
 		visit: {
 			title: 'Visit us',
-			subtitle: 'Pikiitos: find the best clothing for your little ones.',
+			subtitle: 'FALCAR GROUP: integrated solutions and quality toys.',
 			addressLabel: 'Address',
 			phoneLabel: 'Phone',
 			emailLabel: 'Email',
 			hoursLabel: 'Hours'
 		},
 		footer: {
-			description: 'Children\'s clothing designed with love so every moment becomes an unforgettable memory.',
+			description: 'Integrated solutions of high quality, reliable products and toy sales. Well-being for families and industries.',
 			followUs: 'Follow us',
 			quickLinks: 'Quick Links',
 			customerSupport: 'Customer Support',
-			madeWith: 'Small moments, big memories ✨',
-			copyright: '© {year} Pikiitos. All rights reserved.',
+			madeWith: 'Building opportunities ✨',
+			copyright: '© {year} FALCAR GROUP S.A.S. All rights reserved.',
 			links: {
 				products: 'Products',
 				categories: 'Categories',
@@ -194,7 +194,7 @@ const messages = {
 			}
 		},
 		whatsapp: {
-			defaultMessage: '🐥 ¡Hola, PIKIITOS! 💛 Creo que encontré la próxima aventura de mi peque 🌊☀️ ¿Me ayudan a elegir?\nNecesito asesoría 🐣💛'
+			defaultMessage: 'Hello, FALCAR GROUP! I am interested in your integrated solutions and products. Can you help me?\nI need assistance, please.'
 		},
 		store: {
 			pickup: {
