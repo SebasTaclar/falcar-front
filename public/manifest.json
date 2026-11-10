@@ -1,11 +1,11 @@
-{
-  "name": "Pikiitos Store",
-  "short_name": "Pikiitos",
-  "description": "Ropa infantil diseñada con amor para que cada momento sea un recuerdo inolvidable. Encuentra las mejores prendas para tus peques en Bogotá.",
+﻿{
+  "name": "FALCAR GROUP S.A.S.",
+  "short_name": "FALCAR",
+  "description": "Soluciones integrales de alta calidad, productos confiables y venta de juguetes.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFF8E8",
-  "theme_color": "#FFD84D",
+  "background_color": "#F4F6FA",
+  "theme_color": "#052A75",
   "orientation": "portrait-primary",
   "lang": "es-CO",
   "dir": "ltr",
@@ -72,7 +72,7 @@
     {
       "name": "Ropa Niñas",
       "short_name": "Niñas",
-      "description": "Ver ropa para niñas",
+      "description": "Soluciones integrales de alta calidad, productos confiables y venta de juguetes.",
       "url": "/ninas",
       "icons": [
         {
@@ -84,7 +84,7 @@
     {
       "name": "Ropa Niños",
       "short_name": "Niños",
-      "description": "Ver ropa para niños",
+      "description": "Soluciones integrales de alta calidad, productos confiables y venta de juguetes.",
       "url": "/ninos",
       "icons": [
         {
@@ -96,7 +96,7 @@
     {
       "name": "Ofertas",
       "short_name": "Ofertas",
-      "description": "Ver ofertas especiales",
+      "description": "Soluciones integrales de alta calidad, productos confiables y venta de juguetes.",
       "url": "/ofertas",
       "icons": [
         {

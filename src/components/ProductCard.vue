@@ -1,7 +1,7 @@
 <template>
-  <div class="group card-pikiitos overflow-hidden">
+  <div class="group card-falcar overflow-hidden">
     <!-- Image -->
-    <div class="relative aspect-[4/5] overflow-hidden bg-pikiitos-cream/50 cursor-pointer" @click.prevent="$emit('quickView', product)">
+    <div class="relative aspect-[4/5] overflow-hidden cursor-pointer" :class="categoryStyle.bgClass" @click.prevent="$emit('quickView', product)">
       <img
         :src="productImage"
         :alt="product.name"
@@ -11,7 +11,7 @@
 
       <!-- Discount badge -->
       <div v-if="product.originalPrice && product.originalPrice > product.price" class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 z-10">
-        <span class="inline-flex items-center px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-poppins font-bold bg-pikiitos-pink text-white shadow-md">
+        <span class="inline-flex items-center px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-poppins font-bold bg-falcar-pink text-white shadow-md">
           -{{ Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) }}%
         </span>
       </div>
@@ -34,36 +34,36 @@
     </div>
 
     <!-- Info -->
-    <div class="p-3 sm:p-5 flex flex-col flex-1">
-      <p class="font-poppins text-[10px] sm:text-xs text-pikiitos-text-muted uppercase tracking-wider mb-1">{{ categoryName }}</p>
-      <h3 class="font-nunito font-bold text-sm sm:text-lg text-pikiitos-brown leading-snug mb-1.5 sm:mb-2 line-clamp-2 group-hover:text-pikiitos-yellow-dark transition-colors">
+    <div class="p-3 sm:p-5 flex flex-col flex-1" :class="categoryStyle.infoClass">
+      <p class="font-poppins text-[10px] sm:text-xs uppercase tracking-wider mb-1 font-bold" :class="categoryStyle.labelClass">{{ categoryName }}</p>
+      <h3 class="font-nunito font-bold text-sm sm:text-lg text-falcar-brown leading-snug mb-1.5 sm:mb-2 line-clamp-2 group-hover:text-falcar-yellow-dark transition-colors">
         {{ product.name }}
       </h3>
       <div v-if="product.description" class="mb-2 sm:mb-3">
-        <p class="font-poppins text-[10px] sm:text-xs text-pikiitos-text-muted leading-relaxed desc-clamp">
+        <p class="font-poppins text-[10px] sm:text-xs text-falcar-text-muted leading-relaxed desc-clamp">
           {{ product.description }}
         </p>
-        <button @click.prevent="$emit('quickView', product)" class="font-poppins text-[10px] sm:text-xs text-pikiitos-yellow font-semibold hover:underline mt-0.5 sm:mt-1">Ver mas</button>
+        <button @click.prevent="$emit('quickView', product)" class="font-poppins text-[10px] sm:text-xs text-falcar-yellow font-semibold hover:underline mt-0.5 sm:mt-1">Ver mas</button>
       </div>
 
       <!-- Price -->
       <div class="flex items-baseline gap-1.5 sm:gap-2 mt-auto mb-2 sm:mb-3">
-        <span class="font-poppins font-semibold text-lg sm:text-xl text-pikiitos-brown">${{ formatPrice(product.price) }}</span>
-        <span v-if="product.originalPrice && product.originalPrice > product.price" class="font-poppins text-xs sm:text-sm text-pikiitos-text-muted line-through">${{ formatPrice(product.originalPrice) }}</span>
+        <span class="font-poppins font-semibold text-lg sm:text-xl text-falcar-brown">${{ formatPrice(product.price) }}</span>
+        <span v-if="product.originalPrice && product.originalPrice > product.price" class="font-poppins text-xs sm:text-sm text-falcar-text-muted line-through">${{ formatPrice(product.originalPrice) }}</span>
       </div>
 
       <!-- Add to cart / View product -->
       <button
         v-if="product.status === 'available'"
         @click.prevent="handleAddToCart"
-        class="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-pikiitos-brown hover:bg-pikiitos-yellow text-white hover:text-pikiitos-brown font-poppins font-semibold text-xs sm:text-sm rounded-2xl transition-all duration-300 flex items-center justify-center gap-2"
+        class="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-falcar-brown hover:bg-falcar-yellow text-white hover:text-falcar-brown font-poppins font-semibold text-xs sm:text-sm rounded-2xl transition-all duration-300 flex items-center justify-center gap-2"
       >
         Agregar al carrito
       </button>
       <button
         v-else
         @click.prevent="$emit('quickView', product)"
-        class="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-pikiitos-brown hover:bg-pikiitos-yellow text-white hover:text-pikiitos-brown font-poppins font-semibold text-xs sm:text-sm rounded-2xl transition-all duration-300 flex items-center justify-center gap-2"
+        class="w-full py-2.5 sm:py-3 px-3 sm:px-4 bg-falcar-brown hover:bg-falcar-yellow text-white hover:text-falcar-brown font-poppins font-semibold text-xs sm:text-sm rounded-2xl transition-all duration-300 flex items-center justify-center gap-2"
       >
         Ver producto
       </button>
@@ -82,8 +82,8 @@
     >
       <div v-if="showSizeModal" class="fixed inset-0 z-[2300] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4" @click.self="showSizeModal = false">
         <div class="bg-white rounded-2xl p-5 w-full max-w-xs shadow-xl" @click.stop>
-          <h4 class="font-fredoka font-bold text-lg text-pikiitos-brown mb-1">Escoge tu talla</h4>
-          <p class="font-poppins text-xs text-pikiitos-text-muted mb-4">{{ product.name }}</p>
+          <h4 class="font-fredoka font-bold text-lg text-falcar-brown mb-1">Escoge tu talla</h4>
+          <p class="font-poppins text-xs text-falcar-text-muted mb-4">{{ product.name }}</p>
           <div class="flex flex-wrap gap-2 mb-5">
             <button
               v-for="color in product.colors"
@@ -93,18 +93,18 @@
               :class="[
                 'px-4 py-2.5 rounded-xl border font-poppins text-sm font-semibold transition-all',
                 selectedSizes.includes(color)
-                  ? 'bg-pikiitos-brown text-white border-pikiitos-brown'
-                  : 'bg-white text-pikiitos-brown border-pikiitos-cream/60 hover:bg-pikiitos-brown hover:text-white hover:border-pikiitos-brown'
+                  ? 'bg-falcar-brown text-white border-falcar-brown'
+                  : 'bg-white text-falcar-brown border-falcar-cream/60 hover:bg-falcar-brown hover:text-white hover:border-falcar-brown'
               ]"
             >
               {{ color }}
             </button>
           </div>
-          <p v-if="selectedSizes.length > 0" class="font-poppins text-xs text-pikiitos-text-muted mb-3 text-center">{{ selectedSizes.length }} talla(s) seleccionada(s)</p>
-          <button @click="confirmAddToCart" :disabled="selectedSizes.length === 0" :class="['w-full py-2.5 rounded-xl font-poppins text-sm font-medium transition-all mb-2', selectedSizes.length > 0 ? 'bg-pikiitos-brown text-white hover:bg-pikiitos-yellow hover:text-pikiitos-brown' : 'bg-gray-200 text-gray-400 cursor-not-allowed']">
+          <p v-if="selectedSizes.length > 0" class="font-poppins text-xs text-falcar-text-muted mb-3 text-center">{{ selectedSizes.length }} talla(s) seleccionada(s)</p>
+          <button @click="confirmAddToCart" :disabled="selectedSizes.length === 0" :class="['w-full py-2.5 rounded-xl font-poppins text-sm font-medium transition-all mb-2', selectedSizes.length > 0 ? 'bg-falcar-brown text-white hover:bg-falcar-yellow hover:text-falcar-brown' : 'bg-gray-200 text-gray-400 cursor-not-allowed']">
             Agregar al carrito
           </button>
-          <button @click="showSizeModal = false; selectedSizes = []" class="w-full py-2.5 rounded-xl border border-pikiitos-cream/60 text-pikiitos-text-light font-poppins text-sm font-medium hover:bg-pikiitos-cream/30 transition-all">
+          <button @click="showSizeModal = false; selectedSizes = []" class="w-full py-2.5 rounded-xl border border-falcar-cream/60 text-falcar-text-light font-poppins text-sm font-medium hover:bg-falcar-cream/30 transition-all">
             Cancelar
           </button>
         </div>
@@ -117,6 +117,7 @@
 import { ref, computed } from 'vue'
 import { useQuotation } from '@/composables/useQuotation'
 import { useCategories } from '@/composables/useCategories'
+import { getCategoryStyle } from '@/utils/categoryStyles'
 import type { Product } from '@/types/ProductType'
 
 const props = defineProps<{
@@ -129,6 +130,8 @@ const categoryName = computed(() => {
   const cat = categories.value.find(c => String(c.id) === String(props.product.category))
   return cat?.name || props.product.category
 })
+
+const categoryStyle = computed(() => getCategoryStyle(categoryName.value, props.product.category))
 
 const productImage = computed(() => {
   return props.product.images && props.product.images.length > 0 ? props.product.images[0] : ''
@@ -176,7 +179,7 @@ const handleAddToCart = () => {
       id: props.product.id,
       name: props.product.name,
       sku: props.product.id,
-      brand: 'Pikiitos',
+      brand: 'FALCAR GROUP',
       price: props.product.price,
       image: productImage.value,
       category: props.product.category,
@@ -194,7 +197,7 @@ const confirmAddToCart = () => {
       id: props.product.id,
       name: props.product.name,
       sku: props.product.id,
-      brand: 'Pikiitos',
+      brand: 'FALCAR GROUP',
       price: props.product.price,
       image: productImage.value,
       category: props.product.category,

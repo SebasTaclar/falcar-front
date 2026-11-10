@@ -496,7 +496,7 @@ const goToHome = () => {
 <style scoped>
 .checkout-page {
   min-height: 100vh;
-  background: #FFF8E8;
+  background: #F4F6FA;
   padding: 10px 5rem;
   padding-bottom: 3rem;
 }
@@ -520,7 +520,7 @@ const goToHome = () => {
   border-radius: 12px;
   cursor: pointer;
   font-size: 0.9rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
@@ -539,7 +539,7 @@ const goToHome = () => {
   font-size: 2rem;
   color: #4A3728;
   margin: 0;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
 
@@ -566,7 +566,7 @@ const goToHome = () => {
   font-size: 1.3rem;
   margin-bottom: 1.25rem;
   color: #4A3728;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
 
@@ -608,7 +608,7 @@ const goToHome = () => {
   font-size: 0.9rem;
   margin: 0 0 0.3rem 0;
   color: #4A3728;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
 }
 
@@ -622,12 +622,12 @@ const goToHome = () => {
 .item-char-badge {
   font-size: 0.7rem;
   color: #4A3728;
-  background: #D7AC43;
+  background: #D49B27;
   padding: 0.2rem 0.55rem;
   border-radius: 50px;
   display: inline-block;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .item-char-category {
@@ -639,7 +639,7 @@ const goToHome = () => {
   font-size: 0.8rem;
   color: #8B7355;
   margin: 0.15rem 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .item-price {
@@ -647,7 +647,7 @@ const goToHome = () => {
   font-weight: 700;
   color: #4A3728;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .empty-cart {
@@ -667,7 +667,7 @@ const goToHome = () => {
   padding: 0.5rem 0;
   font-size: 0.9rem;
   color: #8B7355;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .total-final {
@@ -677,7 +677,7 @@ const goToHome = () => {
   font-size: 1.15rem;
   font-weight: 700;
   color: #4A3728;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .continue-shopping {
@@ -686,14 +686,14 @@ const goToHome = () => {
 }
 
 .btn-continue {
-  background: #FFF8E8;
+  background: #F4F6FA;
   color: #4A3728;
   border: 2px solid #f5edd8;
   padding: 0.7rem 1.5rem;
   border-radius: 12px;
   font-size: 0.9rem;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
   width: 100%;
@@ -722,7 +722,7 @@ const goToHome = () => {
   font-size: 1.25rem;
   margin-bottom: 1.25rem;
   color: #4A3728;
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   padding-bottom: 0.75rem;
   border-bottom: 2px solid #f5edd8;
@@ -738,7 +738,7 @@ const goToHome = () => {
   font-weight: 600;
   color: #4A3728;
   font-size: 0.85rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .form-group input[type="text"],
@@ -749,16 +749,16 @@ const goToHome = () => {
   border: 2px solid #f5edd8;
   border-radius: 12px;
   font-size: 0.9rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   transition: all 0.2s ease;
-  background: #FFF8E8;
+  background: #F4F6FA;
   color: #4A3728;
   box-sizing: border-box;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #D7AC43;
+  border-color: #D49B27;
   box-shadow: 0 0 0 3px rgba(215, 172, 67, 0.15);
   background: #ffffff;
 }
@@ -778,7 +778,7 @@ const goToHome = () => {
   font-size: 0.8rem;
   margin-top: 0.3rem;
   display: block;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .form-row {
@@ -795,18 +795,18 @@ const goToHome = () => {
   font-weight: normal;
   color: #4A3728;
   font-size: 0.85rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .checkbox-label input[type="checkbox"] {
   width: 18px;
   height: 18px;
   cursor: pointer;
-  accent-color: #D7AC43;
+  accent-color: #D49B27;
 }
 
 .instagram-link-container {
-  background: linear-gradient(135deg, #FFF8E8, #f5edd8);
+  background: linear-gradient(135deg, #F4F6FA, #f5edd8);
   padding: 1rem;
   border-radius: 14px;
   margin-bottom: 1rem;
@@ -823,7 +823,7 @@ const goToHome = () => {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -834,17 +834,17 @@ const goToHome = () => {
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: #D7AC43;
+  background: #D49B27;
   box-shadow: 0 0 0 4px rgba(215, 172, 67, 0.2);
   flex-shrink: 0;
 }
 
 .instagram-link:hover {
-  color: #D7AC43;
+  color: #D49B27;
 }
 
 .privacy-link {
-  color: #D7AC43;
+  color: #D49B27;
   text-decoration: underline;
   font-weight: 600;
 }
@@ -863,7 +863,7 @@ const goToHome = () => {
   font-size: 0.85rem;
   color: #8B7355;
   margin-bottom: 1.25rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .address-section {
@@ -880,7 +880,7 @@ const goToHome = () => {
   color: #E88D92;
   font-weight: 600;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.9rem;
 }
 
@@ -888,13 +888,13 @@ const goToHome = () => {
 .btn-confirm {
   width: 100%;
   padding: 1.15rem;
-  background: #D7AC43;
+  background: #D49B27;
   color: #4A3728;
   border: none;
   border-radius: 14px;
   font-size: 1.05rem;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
   margin-top: 1.5rem;
@@ -914,13 +914,13 @@ const goToHome = () => {
 
 .btn-primary {
   padding: 0.85rem 2rem;
-  background: #D7AC43;
+  background: #D49B27;
   color: #4A3728;
   border: none;
   border-radius: 12px;
   font-size: 0.95rem;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
 }

@@ -1,201 +1,314 @@
 <template>
-  <section class="pt-10 pb-10 lg:pb-16" style="background: linear-gradient(135deg, #FFFDF9 0%, #FFFFFF 40%, #FFF8E8 100%);">
-    <div class="section-padding">
+  <section class="story-section">
+    <div class="story-deco story-deco-tr" aria-hidden="true"></div>
+    <div class="story-deco story-deco-br" aria-hidden="true"></div>
+
+    <div class="section-padding relative z-10">
       <div class="section-container">
+        <div class="story-grid">
+          <!-- Left content -->
+          <div class="story-content animate-fade-in-up">
+            <h2 class="story-logo-title">NOSOTROS</h2>
 
-        <!-- Top: Quiénes somos -->
-        <div class="grid lg:grid-cols-[0.5fr_0.9fr] gap-6 lg:gap-14 items-start">
-          <div class="space-y-2 lg:space-y-3">
-            <p class="font-poppins font-semibold text-[11px] lg:text-sm uppercase tracking-[0.2em] text-pikiitos-yellow">
-              Quiénes somos
+            <p class="story-script-gold">
+              Dios es nuestra fortaleza
             </p>
-            <h2 class="font-fredoka font-bold text-2xl sm:text-4xl lg:text-5xl text-pikiitos-brown leading-[0.95]">
-              Más que ropa,
-              <span class="block font-dancing text-pikiitos-yellow text-[1.15em]" style="font-family: 'Dancing Script', cursive;">
-                creamos recuerdos♡
-              </span>
-            </h2>
-            <p class="font-poppins text-pikiitos-text-light text-xs lg:text-lg leading-relaxed max-w-xl">
-              Pikiitos nació del amor por los detalles, los colores y esos pequeños momentos que se convierten en los más grandes recuerdos. Cada prenda está diseñada para acompañar a los niños en sus aventuras, juegos y sonrisas, con comodidad, calidad y mucha alegría.
+            <p class="story-script-blue">
+              — De su mano construimos nuestro futuro
             </p>
+
+            <h2 class="story-heading">NUESTRA ESENCIA</h2>
+
+            <p class="story-text">
+              En FALCAR GROUP S.A.S., guiados por la integridad y la fe, nos
+              dedicamos a proveer juguetes y artículos familiares de excelente
+              calidad, construyendo experiencias que unen a las familias
+              colombianas.
+            </p>
+
+            <RouterLink to="/nosotros" class="story-btn">
+              CONOCE MÁS
+            </RouterLink>
           </div>
 
-          <div class="story-image-wrapper">
-            <div class="story-image-glow"></div>
-            <div class="story-image-container">
-              <img
-                src="/images/pikitos1.png"
-                alt="Ropa y detalles de Pikiitos"
-                class="story-image"
-              />
-              <div class="story-image-fade-left"></div>
-              <div class="story-image-fade-right"></div>
-              <div class="story-image-fade-top"></div>
-              <div class="story-image-fade-bottom"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom: La diseñadora -->
-        <div class="mt-8 lg:mt-14">
-          <div class="grid lg:grid-cols-[1.05fr_1.2fr] items-center gap-5 lg:gap-8 p-3 sm:p-5 lg:p-8">
-            <div class="overflow-hidden rounded-[1.4rem] lg:rounded-[1.8rem] shadow-soft-sm">
-              <img
-                src="/images/pikitos2.jpeg"
-                alt="Paula Salcedo, diseñadora de Pikiitos"
-                class="w-full h-[260px] sm:h-[420px] object-cover"
-              />
-            </div>
-
-            <div class="px-1 py-2 sm:px-4 lg:px-6">
-              <div class="flex items-center gap-2 lg:gap-3">
-                <svg class="w-5 h-5 lg:w-7 lg:h-7 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="#FF8E8E" stroke-width="1.4">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 8c-1.2-1.8-4-2.2-5 0s0 4.5 5 7.5c5-3 5-5.7 5-7.5s-3.8-1.8-5 0z" stroke="#FF8E8E" fill="none" stroke-width="1.4" />
-                </svg>
-                <span
-                  class="font-poppins font-semibold text-[11px] sm:text-sm uppercase tracking-[0.18em]"
-                  style="color: #FF8E8E;"
-                >
-                  La diseñadora
-                </span>
-              </div>
-
-              <h3
-                class="mt-3 lg:mt-5 font-fredoka font-bold text-2xl sm:text-4xl lg:text-5xl leading-none"
-                style="color: #4A4A4A;"
-              >
-                Hola, soy Paula
-              </h3>
-              <p
-                class="mt-1.5 lg:mt-2 text-lg sm:text-2xl lg:text-[2.15rem]"
-                style="font-family: 'Dancing Script', cursive; color: #FFD84D;"
-              >
-                y este es mi sueño hecho realidad
-                <span style="color: #FFD84D;">♡</span>
-              </p>
-
-              <div class="mt-4 lg:mt-6 space-y-3 lg:space-y-4 font-poppins text-xs sm:text-base leading-[1.75]" style="color: #6B6B6B;">
-                <p>
-                  Desde siempre he creído que hay prendas que no olvidamos porque acompañan momentos únicos. Por eso creé Pikiitos, una marca pensada para vestir la infancia con amor, diseño y calidad, y para ser parte de esos recuerdos que los niños llevarán para siempre.
-                </p>
-                <p>
-                  Gracias por permitirnos ser parte de su historia.
-                </p>
-              </div>
-
-              <div class="mt-5 lg:mt-7">
-                <p
-                  class="text-xl sm:text-3xl"
-                  style="font-family: 'Dancing Script', cursive; color: #4A4A4A;"
-                >
-                  Paula Salcedo
-                  <span style="color: #FFD84D;">♡</span>
-                </p>
-                <p
-                  class="mt-1 font-poppins text-[11px] sm:text-sm"
-                  style="color: #888888;"
-                >
-                  Fundadora y Diseñadora de Pikiitos
-                </p>
+          <!-- Right image -->
+          <div class="story-media animate-fade-in">
+            <div class="story-media-wrap">
+              <div class="story-media-frame">
+                <img
+                  src="https://res.cloudinary.com/dlwzazojt/image/upload/v1794272824/Gemini_Generated_Image_vht14avht14avht1_qikhie.jpg"
+                  alt="Familia disfrutando con juguetes FALCAR"
+                  class="story-media-img"
+                />
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
+
 defineOptions({ name: 'StorySection' })
 </script>
 
 <style scoped>
-.story-image-wrapper {
+.story-section {
   position: relative;
-  width: 100%;
-  max-width: 100%;
   overflow: hidden;
+  background: #ffffff;
+  padding: 4rem 0;
 }
 
-.story-image-glow {
+@media (min-width: 1024px) {
+  .story-section {
+    padding: 5.5rem 0;
+  }
+}
+
+.story-deco {
   position: absolute;
-  inset: -20px;
-  border-radius: 2.5rem;
-  background: radial-gradient(ellipse at center, rgba(255, 248, 232, 0.4) 0%, transparent 70%);
-  filter: blur(20px);
+  background: #052A75;
   z-index: 0;
   pointer-events: none;
 }
 
-.story-image-container {
-  position: relative;
-  border-radius: 1.4rem;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.story-image {
-  display: block;
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  object-position: center 30%;
-  mask-image: radial-gradient(ellipse 90% 85% at 60% 50%, black 40%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 85% at 60% 50%, black 40%, transparent 100%);
-}
-
-.story-image-fade-left {
-  position: absolute;
-  inset: 0;
-  width: 50%;
-  background: linear-gradient(to right, #FFFDF9 0%, rgba(255, 253, 249, 0.8) 25%, rgba(255, 253, 249, 0.3) 60%, transparent 100%);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.story-image-fade-right {
-  position: absolute;
+.story-deco-tr {
   top: 0;
   right: 0;
-  bottom: 0;
-  width: 25%;
-  background: linear-gradient(to left, rgba(255, 253, 249, 0.6) 0%, transparent 100%);
-  z-index: 2;
-  pointer-events: none;
+  width: 28%;
+  height: 120px;
+  clip-path: polygon(35% 0, 100% 0, 100% 100%, 0 0);
 }
 
-.story-image-fade-top {
-  position: absolute;
-  top: 0;
-  left: 0;
+.story-deco-br {
+  bottom: 0;
   right: 0;
-  height: 30%;
-  background: linear-gradient(to bottom, rgba(255, 253, 249, 0.5) 0%, transparent 100%);
-  z-index: 2;
-  pointer-events: none;
+  width: 34%;
+  height: 160px;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 55% 40%);
 }
 
-.story-image-fade-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30%;
-  background: linear-gradient(to top, rgba(255, 253, 249, 0.5) 0%, transparent 100%);
-  z-index: 2;
-  pointer-events: none;
+@media (min-width: 1024px) {
+  .story-deco-tr {
+    width: 22%;
+    height: 180px;
+  }
+  .story-deco-br {
+    width: 30%;
+    height: 240px;
+  }
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .story-grid {
+    grid-template-columns: 1fr 1.15fr;
+    gap: 3.5rem;
+  }
+}
+
+.story-content {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .story-content {
+    text-align: left;
+  }
+}
+
+.story-logo-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  letter-spacing: 0.08em;
+  color: #052a75;
+  margin-bottom: 1.25rem;
+  line-height: 1.1;
+}
+
+@media (min-width: 1024px) {
+  .story-logo-title {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.story-script-gold {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: #D49B27;
+}
+
+.story-script-blue {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: 1.35rem;
+  line-height: 1.3;
+  color: #052A75;
+  margin-bottom: 1.75rem;
 }
 
 @media (min-width: 640px) {
-  .story-image-container {
-    border-radius: 2rem;
+  .story-script-gold {
+    font-size: 2.25rem;
   }
-  .story-image {
-    height: 350px;
-    object-position: center 25%;
+  .story-script-blue {
+    font-size: 1.65rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .story-script-gold {
+    font-size: 2.6rem;
+  }
+  .story-script-blue {
+    font-size: 1.85rem;
+    margin-bottom: 2.25rem;
+  }
+}
+
+.story-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  color: #052A75;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .story-heading {
+    font-size: 1.6rem;
+  }
+}
+
+.story-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: #4a4a4a;
+  max-width: 32rem;
+  margin: 0 auto 1.75rem;
+}
+
+@media (min-width: 1024px) {
+  .story-text {
+    font-size: 0.98rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.story-btn {
+  display: inline-block;
+  background: #052A75;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  padding: 0.85rem 1.75rem;
+  border-radius: 4px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.story-btn:hover {
+  background: #073d9e;
+  transform: translateY(-2px);
+}
+
+.story-media {
+  display: flex;
+  justify-content: center;
+}
+
+.story-media-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+}
+
+/* Contorno dorado desplazado detrás del marco */
+.story-media-wrap::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: -18px;
+  bottom: -18px;
+  border: 3px solid #D49B27;
+  border-radius: 50% 50% 20px 20px / 45% 45% 20px 20px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.story-media-frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border: 4px solid #D49B27;
+  background: #052A75;
+  padding: 0;
+  border-radius: 50% 50% 20px 20px / 45% 45% 20px 20px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(5, 42, 117, 0.25);
+}
+
+@media (min-width: 400px) {
+  .story-media-wrap {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 640px) {
+  .story-media-wrap {
+    max-width: 480px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .story-media-wrap {
+    max-width: 560px;
+  }
+}
+
+.story-media-img {
+  display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 400px) {
+  .story-media-img {
+    height: 180px;
+  }
+}
+
+@media (min-width: 640px) {
+  .story-media-img {
+    height: 340px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .story-media-img {
+    height: 400px;
   }
 }
 </style>

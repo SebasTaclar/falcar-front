@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div v-if="open" class="qv-overlay" role="dialog" aria-modal="true" aria-label="Detalle del producto" @click="emit('close')">
     <div class="qv-modal" @click.stop>
       <button class="qv-close" type="button" aria-label="Cerrar" @click="emit('close')">
@@ -16,7 +16,7 @@
             <img :src="activeImage" :alt="product.name" loading="lazy" decoding="async" />
           </div>
 
-          <div v-if="product.images?.length" class="qv-thumbs" aria-label="GalerÃ­a">
+          <div v-if="product.images?.length" class="qv-thumbs" aria-label="Galería">
             <button
               v-for="(img, idx) in product.images"
               :key="img + idx"
@@ -59,7 +59,7 @@
                 {{ c }}
               </button>
             </div>
-            <p v-if="selectedColors.length > 0" class="text-center text-xs text-pikiitos-text-muted mt-2 font-poppins">{{ selectedColors.length }} talla(s) seleccionada(s)</p>
+            <p v-if="selectedColors.length > 0" class="text-center text-xs text-falcar-text-muted mt-2 font-poppins">{{ selectedColors.length }} talla(s) seleccionada(s)</p>
           </div>
 
           <div class="qv-observations">
@@ -67,7 +67,7 @@
 
           <div class="qv-actions">
             <p v-if="showSizeWarning" class="text-center text-xs text-red-400 mb-2 font-poppins animate-pulse">Selecciona al menos una talla antes de agregar</p>
-            <p v-else-if="product.status === 'available' && product.colors?.length && selectedColors.length === 0" class="text-center text-xs text-pikiitos-text-muted mb-2 font-poppins">Escoge tu(s) talla(s)</p>
+            <p v-else-if="product.status === 'available' && product.colors?.length && selectedColors.length === 0" class="text-center text-xs text-falcar-text-muted mb-2 font-poppins">Escoge tu(s) talla(s)</p>
             <button
               type="button"
               class="qv-add"
@@ -118,7 +118,7 @@ const categoryLabel = computed(() => {
   if (!props.product) return ''
   const id = String(props.product.category || '')
   const name = getCategoryById(id)?.name
-  return (name || 'Sin categorÃ­a').toUpperCase()
+  return (name || 'Sin categoría').toUpperCase()
 })
 
 const activeImage = computed(() => {
@@ -292,7 +292,7 @@ onBeforeUnmount(() => {
   aspect-ratio: 3 / 4;
   overflow: hidden;
   border-radius: 16px;
-  background: #FFF8E8;
+  background: #F4F6FA;
 }
 
 .qv-hero img {
@@ -329,7 +329,7 @@ onBeforeUnmount(() => {
 }
 
 .qv-thumb.active {
-  border-color: #D7AC43;
+  border-color: #D49B27;
   box-shadow: 0 0 0 2px rgba(215, 172, 67, 0.2);
 }
 
@@ -341,7 +341,7 @@ onBeforeUnmount(() => {
 }
 
 .qv-title {
-  font-family: "Fredoka", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.6rem;
   font-weight: 700;
   color: #4A3728;
@@ -352,7 +352,7 @@ onBeforeUnmount(() => {
   margin-top: 6px;
   font-size: 0.78rem;
   font-weight: 600;
-  color: #D7AC43;
+  color: #D49B27;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -361,7 +361,7 @@ onBeforeUnmount(() => {
   margin-top: 4px;
   font-size: 0.82rem;
   color: #8B7355;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .qv-price {
@@ -370,13 +370,13 @@ onBeforeUnmount(() => {
   align-items: baseline;
   gap: 10px;
   padding: 10px 14px;
-  background: #FFF8E8;
+  background: #F4F6FA;
   border-radius: 12px;
   border: 1px solid rgba(215, 172, 67, 0.12);
 }
 
 .qv-price-current {
-  font-family: "Fredoka", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.35rem;
   font-weight: 700;
   color: #4A3728;
@@ -393,7 +393,7 @@ onBeforeUnmount(() => {
   color: #6B5B4E;
   line-height: 1.6;
   font-size: 0.9rem;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
   white-space: pre-line;
 }
 
@@ -402,7 +402,7 @@ onBeforeUnmount(() => {
 }
 
 .qv-colors-title {
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 0.82rem;
   font-weight: 600;
   color: #4A3728;
@@ -424,14 +424,14 @@ onBeforeUnmount(() => {
   color: #4A3728;
   padding: 7px 14px;
   border-radius: 999px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 0.82rem;
   font-weight: 500;
 }
 
 .qv-color.active {
-  border-color: #D7AC43;
-  background: #FFF8E8;
+  border-color: #D49B27;
+  background: #F4F6FA;
   box-shadow: 0 0 0 2px rgba(215, 172, 67, 0.15);
 }
 
@@ -446,7 +446,7 @@ onBeforeUnmount(() => {
   border: 0;
   background: #4A3728;
   color: white;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-size: 0.92rem;
   cursor: pointer;
@@ -454,7 +454,7 @@ onBeforeUnmount(() => {
 }
 
 .qv-add:hover {
-  background: #D7AC43;
+  background: #D49B27;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(215, 172, 67, 0.3);
 }
@@ -473,7 +473,7 @@ onBeforeUnmount(() => {
 
 .qv-status {
   margin-top: 10px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 0.85rem;
   color: #8B7355;
   text-align: center;

@@ -8,19 +8,15 @@
 
     <ProductsSection />
 
-    <EmotionalBanner />
-
     <div id="nosotros">
       <StorySection />
     </div>
 
-    <Benefits />
-
-    <Testimonials />
-
     <div id="contacto">
       <Newsletter />
     </div>
+
+    <EmotionalBanner />
   </main>
 </template>
 
@@ -30,8 +26,6 @@ import CategoriesSection from '@/components/CategoriesSection.vue'
 import ProductsSection from '@/components/ProductsSection.vue'
 import EmotionalBanner from '@/components/EmotionalBanner.vue'
 import StorySection from '@/components/StorySection.vue'
-import Benefits from '@/components/Benefits.vue'
-import Testimonials from '@/components/Testimonials.vue'
 import Newsletter from '@/components/Newsletter.vue'
 
 defineOptions({ name: 'HomeView' })
@@ -39,6 +33,6 @@ defineOptions({ name: 'HomeView' })
 
 <style scoped>
 .home-main {
-  background: #FFF8E8;
+  background: #F4F6FA;
 }
 </style>

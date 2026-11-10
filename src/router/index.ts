@@ -13,10 +13,11 @@ declare module 'vue-router' {
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior(to) {
+  scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
       return new Promise(resolve => {
-        requestAnimationFrame(() => {
+        // Espera a que el DOM actualice y el menú móvil cierre su transición
+        setTimeout(() => {
           const el = document.querySelector(to.hash)
           if (el) {
             el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -24,9 +25,10 @@ const router = createRouter({
             return
           }
           resolve({ left: 0, top: 0 })
-        })
+        }, 300)
       })
     }
+    if (savedPosition) return savedPosition
     return { left: 0, top: 0 }
   },
   routes: [

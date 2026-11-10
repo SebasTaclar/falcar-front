@@ -21,8 +21,8 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-// Numero de WhatsApp de Pikiitos Store
-const rawNumber = '3206770595'
+// Numero de WhatsApp de FALCAR GROUP S.A.S.
+const rawNumber = '3144406263'
 // Normaliza a formato internacional (prepend 57 para Colombia)
 const whatsappNumber = '57' + rawNumber.replace(/[^\d]/g, '')
 
