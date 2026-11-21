@@ -1149,8 +1149,14 @@
               </div>
             </div>
             <div class="form-actions">
-              <button type="button" class="btn btn-secondary" @click="closeCategoryForm">Cancelar</button>
-              <button type="submit" class="btn btn-primary">{{ editingCategory ? 'Actualizar' : 'Crear' }}</button>
+              <button type="button" class="btn btn-secondary" @click="closeCategoryForm" :disabled="savingCategory">Cancelar</button>
+              <button type="submit" class="btn btn-primary" :disabled="savingCategory">
+                <span v-if="savingCategory" class="btn-loading-text">
+                  <svg class="spinner-sm" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></svg>
+                  {{ editingCategory ? 'Actualizando...' : 'Creando...' }}
+                </span>
+                <span v-else>{{ editingCategory ? 'Actualizar' : 'Crear' }}</span>
+              </button>
             </div>
           </form>
         </div>
@@ -1312,6 +1318,11 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Overlay de guardado -->
+    <div v-if="savingProduct || savingCategory" class="saving-overlay">
+      <div class="saving-spinner"></div>
     </div>
   </div>
 </template>
@@ -1711,8 +1722,13 @@ const getCategoryName = (categoryId: string): string => {
 }
 
 const toggleProductFeatured = async (product: Product) => {
-  await updateProduct(product.id, { isShowcase: !product.isShowcase })
-  await loadProducts()
+  savingProduct.value = true
+  try {
+    await updateProduct(product.id, { isShowcase: !product.isShowcase })
+    await loadProducts()
+  } finally {
+    savingProduct.value = false
+  }
 }
 
 const filteredCategories = computed(() => {
@@ -1786,14 +1802,28 @@ const editCategory = (category: Category) => {
 }
 
 const deleteProductConfirm = async (id: string) => {
-  if (await showConfirm('Eliminar producto', '¿Estás seguro de eliminar este producto?')) deleteProduct(id)
+  if (await showConfirm('Eliminar producto', '¿Estás seguro de eliminar este producto?')) {
+    savingProduct.value = true
+    try {
+      await deleteProduct(id)
+    } finally {
+      savingProduct.value = false
+    }
+  }
 }
 
 const handleDeleteCategory = async (id: string) => {
   const count = getProductsInCategory(id)
   let msg = '¿Estás seguro de eliminar esta categoría?'
   if (count > 0) msg = `⚠️ Esta categoría tiene ${count} producto(s) asociado(s). ¿Estás seguro de que deseas continuar?`
-  if (await showConfirm('Eliminar categoría', msg)) await deleteCategory(id)
+  if (await showConfirm('Eliminar categoría', msg)) {
+    savingCategory.value = true
+    try {
+      await deleteCategory(id)
+    } finally {
+      savingCategory.value = false
+    }
+  }
 }
 
 const isFormValid = computed(() => {
@@ -1846,6 +1876,7 @@ const handlePriceInput = (event: Event, field: 'price' | 'originalPrice') => {
 }
 
 const savingProduct = ref(false)
+const savingCategory = ref(false)
 
 const saveProduct = async () => {
   const payload = { ...productForm.value, images: productForm.value.images.map(i => i.trim()).filter(Boolean) }
@@ -1874,9 +1905,22 @@ const saveCategory = async () => {
   const payload: CreateCategoryRequest = { name: categoryForm.value.name, description: categoryForm.value.description, imageUrls: urls.length > 0 ? urls : undefined }
   if (editingCategory.value) {
     if (!await showConfirm('Actualizar categoría', `¿Actualizar categoría "${editingCategory.value.name}"?`)) return
-    await updateCategory(editingCategory.value.id, payload)
-  } else { await addCategory(payload) }
-  closeCategoryForm()
+    savingCategory.value = true
+    try {
+      await updateCategory(editingCategory.value.id, payload)
+      closeCategoryForm()
+    } finally {
+      savingCategory.value = false
+    }
+  } else {
+    savingCategory.value = true
+    try {
+      await addCategory(payload)
+      closeCategoryForm()
+    } finally {
+      savingCategory.value = false
+    }
+  }
 }
 
 const closeProductForm = () => {
@@ -3945,6 +3989,26 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 .spinner-sm {
   width: 16px;
   height: 16px;
+  animation: spin 0.8s linear infinite;
+}
+
+.saving-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.saving-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
 
