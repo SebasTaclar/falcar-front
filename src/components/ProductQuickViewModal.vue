@@ -292,13 +292,13 @@ onBeforeUnmount(() => {
   aspect-ratio: 3 / 4;
   overflow: hidden;
   border-radius: 16px;
-  background: #F4F6FA;
+  background: transparent;
 }
 
 .qv-hero img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: transform 0.4s;
 }
