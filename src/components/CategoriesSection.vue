@@ -124,18 +124,11 @@ const getStyleForCategory = (name: string, index: number) => {
   }
 }
 
-const fallbackImages = [
-  'https://res.cloudinary.com/dlwzazojt/image/upload/v1787339851/ni%C3%B1os_ao0byf.jpg',
-  'https://res.cloudinary.com/dlwzazojt/image/upload/v1787340570/Gemini_Generated_Image_b2np74b2np74b2np_sra002.jpg',
-  'https://res.cloudinary.com/dlwzazojt/image/upload/v1787340240/ChatGPT_Image_21_ago_2026_14_22_37_kiusrx.png',
-  'https://res.cloudinary.com/dlwzazojt/image/upload/v1787340364/Gemini_Generated_Image_pa0v3jpa0v3jpa0v_ryqdca.jpg',
-]
-
 const displayCategories = computed(() => {
   return categories.value.map((cat, i) => {
     const image = (cat.imageUrls && cat.imageUrls.length > 0)
       ? cat.imageUrls[0]
-      : fallbackImages[i % fallbackImages.length]
+      : null
     const style = getStyleForCategory(cat.name, i)
     return {
       id: cat.id,

@@ -1224,6 +1224,24 @@
       </div>
     </div>
 
+    <!-- Alert Modal -->
+    <div v-if="alertModal.open" class="modal-overlay" @click.self="closeAlert">
+      <div class="modal confirm-modal">
+        <div class="confirm-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D91E28" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <h3 class="confirm-title">{{ alertModal.title }}</h3>
+        <p class="confirm-message">{{ alertModal.message }}</p>
+        <div class="confirm-actions">
+          <button class="btn btn-primary" @click="closeAlert">Aceptar</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Order Detail Modal -->
     <div v-if="showOrderDetail && selectedOrderDetail" class="modal-overlay" @click="closeOrderDetail">
       <div class="modal order-detail-modal" @click.stop>
@@ -1763,6 +1781,20 @@ const confirmModal = ref({
   onCancel: () => {}
 })
 
+const alertModal = ref({
+  open: false,
+  title: '',
+  message: ''
+})
+
+const showAlert = (title: string, message: string) => {
+  alertModal.value = { open: true, title, message }
+}
+
+const closeAlert = () => {
+  alertModal.value.open = false
+}
+
 function showConfirm(title: string, message: string): Promise<boolean> {
   return new Promise((resolve) => {
     confirmModal.value = {
@@ -1805,7 +1837,10 @@ const deleteProductConfirm = async (id: string) => {
   if (await showConfirm('Eliminar producto', '¿Estás seguro de eliminar este producto?')) {
     savingProduct.value = true
     try {
-      await deleteProduct(id)
+      const result = await deleteProduct(id)
+      if (!result) {
+        showAlert('No se pudo eliminar', 'No se pudo eliminar el producto.')
+      }
     } finally {
       savingProduct.value = false
     }
@@ -1814,12 +1849,17 @@ const deleteProductConfirm = async (id: string) => {
 
 const handleDeleteCategory = async (id: string) => {
   const count = getProductsInCategory(id)
-  let msg = '¿Estás seguro de eliminar esta categoría?'
-  if (count > 0) msg = `⚠️ Esta categoría tiene ${count} producto(s) asociado(s). ¿Estás seguro de que deseas continuar?`
-  if (await showConfirm('Eliminar categoría', msg)) {
+  if (count > 0) {
+    showAlert('No se puede eliminar', `Esta categoría tiene ${count} producto(s) asociado(s). Elimina o reasigna los productos antes de borrarla.`)
+    return
+  }
+  if (await showConfirm('Eliminar categoría', '¿Estás seguro de eliminar esta categoría?')) {
     savingCategory.value = true
     try {
-      await deleteCategory(id)
+      const result = await deleteCategory(id)
+      if (result && !result.success) {
+        showAlert('No se pudo eliminar', result.message || 'No se pudo eliminar la categoría.')
+      }
     } finally {
       savingCategory.value = false
     }
