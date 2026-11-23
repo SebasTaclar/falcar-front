@@ -10,7 +10,7 @@
 
     <div class="banner-line banner-line-top" aria-hidden="true"></div>
 
-    <div class="section-padding relative z-10 pt-10 pb-14 sm:pt-10 sm:pb-16">
+    <div class="section-padding relative z-10 pt-10 pb-14 sm:pt-14 sm:pb-20">
       <div class="section-container">
         <div class="text-center">
           <div class="mb-3 sm:mb-6">

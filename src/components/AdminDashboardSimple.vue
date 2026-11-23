@@ -4,7 +4,6 @@
     <aside class="sidebar">
       <div class="sidebar-header">
         <router-link to="/" class="sidebar-logo">
-          <img src="/images/falcar.jpeg" alt="FALCAR" class="logo-pollito" />
           <img src="/images/falcar.jpeg" alt="FALCAR GROUP" class="logo-img" />
         </router-link>
         <p class="sidebar-subtitle">Panel de Administración</p>
@@ -440,7 +439,7 @@
 
           <!-- Stats Cards -->
           <div class="cat-stats-row cat-stats-cards">
-            <div class="cat-stat-card">
+            <div class="cat-stat-card cat-stat-card-full">
               <div class="cat-stat-icon yellow">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
@@ -771,7 +770,7 @@
             <!-- Stats -->
             <div class="stats-row stats-row-4">
               <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(135deg, #D49B27, #D91E28)">
+                <div class="stat-icon" style="background: rgba(5,42,117,0.08)">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                 </div>
                 <div class="stat-content">
@@ -780,8 +779,8 @@
                 </div>
               </div>
               <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(135deg, #D49B27, #D91E28)">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div class="stat-icon" style="background: rgba(212,155,39,0.14)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8861F" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div class="stat-content">
                   <span class="stat-label">Pendientes</span>
@@ -789,8 +788,8 @@
                 </div>
               </div>
               <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(135deg, #D49B27, #D91E28)">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <div class="stat-icon" style="background: rgba(30,122,82,0.1)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E7A52" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
                 <div class="stat-content">
                   <span class="stat-label">Completados</span>
@@ -798,8 +797,8 @@
                 </div>
               </div>
               <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(135deg, #D49B27, #D91E28)">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <div class="stat-icon" style="background: rgba(217,30,40,0.1)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D91E28" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
                 <div class="stat-content">
                   <span class="stat-label">Ingresos</span>
@@ -1035,21 +1034,6 @@
                 <span>⭐ Producto Destacado</span>
               </label>
               <p class="form-help">Marcar para mostrar en la sección de Productos Destacados del inicio</p>
-            </div>
-            <div class="form-group">
-              <label>Tallas Disponibles</label>
-              <div class="materials-grid">
-                <button v-for="material in materialOptions" :key="material" type="button" class="material-chip" :class="{ selected: isMaterialSelected(material) }" @click="toggleProductMaterial(material)">
-                  {{ material }}
-                </button>
-              </div>
-              <div v-if="productForm.colors.length > 0" class="selected-materials">
-                <span class="selected-label">Seleccionadas: </span>
-                <span v-for="(color, idx) in productForm.colors" :key="idx" class="selected-tag">
-                  {{ color }}
-                  <button type="button" class="selected-tag-remove" @click="productForm.colors.splice(idx, 1)">✕</button>
-                </span>
-              </div>
             </div>
             <div class="form-group">
               <label>Imágenes del Producto (URL) *</label>
@@ -1411,30 +1395,30 @@ const dashboardStats = computed(() => [
   {
     label: 'Productos',
     value: products.value.length.toString(),
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
-    iconBg: 'linear-gradient(135deg, #D49B27, #D91E28)'
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8861F" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
+    iconBg: 'rgba(212,155,39,0.14)'
   },
   {
     label: 'Categorías',
     value: categories.value.length.toString(),
     icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
-    iconBg: 'linear-gradient(135deg, #D49B27, #D91E28)'
+    iconBg: 'rgba(5,42,117,0.08)'
   },
   {
     label: 'Ventas',
     value: `$${totalRevenue.value.toLocaleString()}`,
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
-    iconBg: 'linear-gradient(135deg, #D49B27, #D91E28)'
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D91E28" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+    iconBg: 'rgba(217,30,40,0.1)'
   },
   {
     label: 'Pedidos',
     value: totalSalesCount.value.toString(),
-    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#052A75" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>',
-    iconBg: 'linear-gradient(135deg, #D49B27, #D91E28)'
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A3D9B" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>',
+    iconBg: 'rgba(10,61,155,0.08)'
   }
 ])
 
-const categoryColors = ['#D49B27', '#D91E28', '#052A75', '#0A3D9B', '#052A75', '#D49B27', '#E8B84A', '#C9D6EE']
+const categoryColors = ['#D49B27', '#052A75', '#D91E28', '#0A3D9B', '#E8B84A', '#B8861F', '#C9D6EE']
 
 const productsByCategory = computed(() => {
   const map: Record<string, number> = {}
@@ -1608,7 +1592,6 @@ const productForm = ref({
 
 const getPreviewUrl = (url: string) => url || ''
 
-const materialOptions = ['Bebe', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'Otro']
 const categoryForm = ref<CreateCategoryRequest>({ name: '', description: '' })
 const categoryImageUrls = ref<string[]>([''])
 
@@ -1901,14 +1884,6 @@ const moveImageUrl = (index: number, direction: -1 | 1) => {
   }
 }
 
-const normalizeString = (str: string): string => str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/\s+/g, ' ')
-const isMaterialSelected = (material: string) => productForm.value.colors.some(c => normalizeString(c) === normalizeString(material))
-const toggleProductMaterial = (material: string) => {
-  const idx = productForm.value.colors.findIndex(c => normalizeString(c) === normalizeString(material))
-  if (idx > -1) productForm.value.colors.splice(idx, 1)
-  else productForm.value.colors.push(material)
-}
-
 const formatPriceInput = (value: number): string => { if (!value || value === 0) return ''; return value.toLocaleString('es-CO') }
 const handlePriceInput = (event: Event, field: 'price' | 'originalPrice') => {
   const raw = (event.target as HTMLInputElement).value.replace(/\./g, '').replace(/[^\d]/g, '')
@@ -2041,21 +2016,29 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 .admin-layout, .admin-layout *, .admin-layout *::before, .admin-layout *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 .admin-layout {
+  /* Paleta FALCAR: azul #052A75, dorado #D49B27, rojo #D91E28 */
   --c-primary: #D49B27;
-  --c-primary-hover: #052A75;
+  --c-primary-light: #E8B84A;
+  --c-primary-dark: #B8861F;
+  --c-primary-hover: #B8861F;
+  --c-navy: #052A75;
+  --c-navy-light: #0A3D9B;
   --c-accent: #D91E28;
-  --c-black: #0A1F44;
+  --c-black: #052A75;
   --c-dark: #3A4A6B;
-  --c-sidebar: #F4F6FA;
+  --c-sidebar: #052A75;
   --c-white: #FFFFFF;
   --c-light: #F5F5F5;
   --c-gray: #6B7280;
   --c-gray-light: #9CA3AF;
   --c-border: #E5E7EB;
-  --c-success: #10B981;
-  --c-danger: #EF4444;
-  --c-warning: #F59E0B;
-  --c-info: #3B82F6;
+  --c-success: #1E7A52;
+  --c-success-bg: #E6F4EE;
+  --c-danger: #D91E28;
+  --c-danger-bg: #FBEAEA;
+  --c-warning: #B8861F;
+  --c-warning-bg: #FBF3E1;
+  --c-info: #0A3D9B;
   --sidebar-w: 240px;
   --topbar-h: 64px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -2083,30 +2066,27 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 
 .sidebar-header {
   padding: 24px 20px 16px;
-  border-bottom: 1px solid rgba(5,42,117,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
 .sidebar-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 8px 12px;
 }
 
 .logo-img {
-  height: 52px;
-  width: auto;
+  width: 130px;
+  height: auto;
   object-fit: contain;
-}
-
-.logo-pollito {
-  height: 40px;
-  width: 40px;
-  object-fit: contain;
-  margin-right: 6px;
 }
 
 .sidebar-subtitle {
   font-size: 0.7rem;
-  color: #052A75;
+  color: rgba(255,255,255,0.65);
   margin-top: 4px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -2128,7 +2108,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   border-radius: 10px;
   border: none;
   background: none;
-  color: #3A4A6B;
+  color: rgba(255,255,255,0.78);
   font-size: 0.88rem;
   font-weight: 500;
   cursor: pointer;
@@ -2138,13 +2118,13 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 }
 
 .nav-item:hover {
-  background: rgba(212,155,39,0.15);
-  color: #052A75;
+  background: rgba(255,255,255,0.1);
+  color: #E8B84A;
 }
 
 .nav-item.active {
   background: var(--c-primary);
-  color: #052A75;
+  color: var(--c-navy);
   font-weight: 600;
 }
 
@@ -2156,7 +2136,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   flex-shrink: 0;
 }
 
-.nav-item.active .nav-icon { color: #052A75; }
+.nav-item.active .nav-icon { color: var(--c-navy); }
 
 .nav-badge {
   margin-left: auto;
@@ -2172,15 +2152,15 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 
 .sidebar-footer {
   padding: 16px 10px 20px;
-  border-top: 1px solid rgba(5,42,117,0.1);
+  border-top: 1px solid rgba(255,255,255,0.12);
 }
 
-.logout { color: #052A75; }
-.logout:hover { background: rgba(239,68,68,0.12); color: #EF4444; }
+.logout { color: rgba(255,255,255,0.78); }
+.logout:hover { background: rgba(217,30,40,0.25); color: #FFB3B6; }
 
 .copyright {
   font-size: 0.65rem;
-  color: #052A75;
+  color: rgba(255,255,255,0.5);
   text-align: center;
   line-height: 1.5;
   margin-top: 12px;
@@ -2357,7 +2337,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   transition: all 0.2s ease;
 }
 .logout-btn:hover {
-  background: rgba(239, 68, 68, 0.08);
+  background: rgba(217, 30, 40, 0.08);
   border-color: var(--c-danger);
   color: var(--c-danger);
 }
@@ -2805,9 +2785,9 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   white-space: nowrap;
 }
 
-.order-status.pending { background: #FEF3C7; color: #92400E; }
-.order-status.completed { background: #D1FAE5; color: #065F46; }
-.order-status.cancelled { background: #FEE2E2; color: #991B1B; }
+.order-status.pending { background: #FBF3E1; color: #9A6E14; }
+.order-status.completed { background: #E6F4EE; color: #1E7A52; }
+.order-status.cancelled { background: #FBEAEA; color: #B01820; }
 
 .order-amount {
   font-size: 0.85rem;
@@ -2935,8 +2915,8 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   border-radius: 6px;
   font-size: 0.7rem;
   font-weight: 600;
-  background: #FEE2E2;
-  color: #991B1B;
+  background: #FBEAEA;
+  color: #B01820;
   white-space: nowrap;
 }
 
@@ -2969,9 +2949,9 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   white-space: nowrap;
 }
 
-.quotation-status.pending { background: #FEF3C7; color: #92400E; }
-.quotation-status.completed { background: #D1FAE5; color: #065F46; }
-.quotation-status.cancelled { background: #FEE2E2; color: #991B1B; }
+.quotation-status.pending { background: #FBF3E1; color: #9A6E14; }
+.quotation-status.completed { background: #E6F4EE; color: #1E7A52; }
+.quotation-status.cancelled { background: #FBEAEA; color: #B01820; }
 
 .quotation-amount {
   font-size: 0.85rem;
@@ -3158,8 +3138,8 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 .prod-category-badge {
   display: inline-block;
   padding: 4px 10px;
-  background: #FEF3C7;
-  color: #92400E;
+  background: #FBF3E1;
+  color: #9A6E14;
   border-radius: 6px;
   font-size: 0.75rem;
   font-weight: 500;
@@ -3180,18 +3160,18 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 }
 
 .prod-status-badge.available {
-  background: #D1FAE5;
-  color: #065F46;
+  background: #E6F4EE;
+  color: #1E7A52;
 }
 
 .prod-status-badge.out-of-stock {
-  background: #FEE2E2;
-  color: #991B1B;
+  background: #FBEAEA;
+  color: #B01820;
 }
 
 .prod-status-badge.coming-soon {
-  background: #FEF3C7;
-  color: #92400E;
+  background: #FBF3E1;
+  color: #9A6E14;
 }
 
 .prod-star-btn {
@@ -3207,7 +3187,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 }
 
 .prod-star-btn:hover {
-  background: #FEF3C7;
+  background: #FBF3E1;
 }
 
 .prod-star-btn.active {
@@ -3277,10 +3257,10 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 }
 
 .cat-stat-icon.yellow { background: rgba(212,155,39,0.12); color: var(--c-primary); }
-.cat-stat-icon.green { background: rgba(16,185,129,0.12); color: var(--c-success); }
-.cat-stat-icon.red { background: rgba(239,68,68,0.12); color: var(--c-danger); }
-.cat-stat-icon.blue { background: rgba(59,130,246,0.12); color: var(--c-info); }
-.cat-stat-icon.orange { background: rgba(249,115,22,0.12); color: #f97316; }
+.cat-stat-icon.green { background: rgba(30,122,82,0.1); color: var(--c-success); }
+.cat-stat-icon.red { background: rgba(217,30,40,0.1); color: var(--c-danger); }
+.cat-stat-icon.blue { background: rgba(10,61,155,0.08); color: var(--c-info); }
+.cat-stat-icon.orange { background: rgba(232,184,74,0.18); color: var(--c-primary-dark); }
 
 .cat-stat-info {
   display: flex;
@@ -3449,13 +3429,13 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 }
 
 .cat-status-badge.active {
-  background: #D1FAE5;
-  color: #065F46;
+  background: #E6F4EE;
+  color: #1E7A52;
 }
 
 .cat-status-badge.inactive {
-  background: #FEE2E2;
-  color: #991B1B;
+  background: #FBEAEA;
+  color: #B01820;
 }
 
 .cat-actions {
@@ -3625,9 +3605,9 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   font-weight: 600;
 }
 
-.status-pill.completed { background: #D1FAE5; color: #065F46; }
-.status-pill.pending { background: #FEF3C7; color: #92400E; }
-.status-pill.cancelled { background: #FEE2E2; color: #991B1B; }
+.status-pill.completed { background: #E6F4EE; color: #1E7A52; }
+.status-pill.pending { background: #FBF3E1; color: #9A6E14; }
+.status-pill.cancelled { background: #FBEAEA; color: #B01820; }
 
 .products-badge {
   background: var(--c-primary);
@@ -3679,7 +3659,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 
 .btn-primary {
   background: var(--c-primary);
-  color: var(--c-black);
+  color: var(--c-navy);
 }
 .btn-primary:hover { background: var(--c-primary-hover); transform: translateY(-1px); }
 .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -3703,7 +3683,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   color: var(--c-gray);
   border: 1px solid var(--c-border);
 }
-.btn-outline-danger:hover { border-color: var(--c-danger); color: var(--c-danger); background: rgba(239,68,68,0.04); }
+.btn-outline-danger:hover { border-color: var(--c-danger); color: var(--c-danger); background: rgba(217,30,40,0.05); }
 
 .btn-sm { padding: 7px 12px; font-size: 0.78rem; border-radius: 8px; }
 
@@ -3888,7 +3868,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   border-radius: 6px;
   border: 1px solid #e5e7eb;
   background: #fff;
-  color: #ef4444;
+  color: var(--c-danger);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -3896,7 +3876,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   font-size: 0.75rem;
   transition: all 0.2s;
 }
-.image-remove-btn:hover { background: #fef2f2; border-color: #ef4444; }
+.image-remove-btn:hover { background: var(--c-danger-bg); border-color: var(--c-danger); }
 
 .image-main-btn {
   width: 32px;
@@ -3912,7 +3892,7 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   flex-shrink: 0;
 }
 .image-main-btn svg { pointer-events: none; width: 16px; height: 16px; }
-.image-main-btn:hover { border-color: #D49B27; background: #fffbeb; }
+.image-main-btn:hover { border-color: #D49B27; background: #FBF3E1; }
 .image-main-btn.active { border-color: #D49B27; background: #D49B27; }
 
 .image-add-btn {
@@ -3983,8 +3963,8 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
 }
 
 .discount-info {
-  background: rgba(16,185,129,0.06);
-  border: 1px solid rgba(16,185,129,0.15);
+  background: rgba(30,122,82,0.06);
+  border: 1px solid rgba(30,122,82,0.15);
   border-radius: 8px;
   padding: 10px 14px;
   margin-bottom: 16px;
@@ -4154,12 +4134,12 @@ const openWhatsApp = (quote: { phone: string; name: string }) => {
   background: var(--c-white);
 }
 
-.status-select.completed { border-color: #10b981; color: #10b981; }
-.status-select.pending { border-color: #f59e0b; color: #f59e0b; }
-.status-select.cancelled { border-color: #ef4444; color: #ef4444; }
-.status-select.processing { border-color: #3b82f6; color: #3b82f6; }
-.status-select.shipped { border-color: #8b5cf6; color: #8b5cf6; }
-.status-select.delivered { border-color: #10b981; color: #10b981; }
+.status-select.completed { border-color: #1E7A52; color: #1E7A52; }
+.status-select.pending { border-color: #B8861F; color: #B8861F; }
+.status-select.cancelled { border-color: #D91E28; color: #D91E28; }
+.status-select.processing { border-color: #052A75; color: #052A75; }
+.status-select.shipped { border-color: #0A3D9B; color: #0A3D9B; }
+.status-select.delivered { border-color: #1E7A52; color: #1E7A52; }
 
 /* ===== ORDER DETAIL MODAL ===== */
 .order-detail-modal {

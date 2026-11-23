@@ -75,6 +75,24 @@
               />
             </div>
           </div>
+
+          <!-- Side arrows (desktop) -->
+          <button
+            @click="scrollLeft"
+            :disabled="!canScrollLeft"
+            class="hidden sm:flex absolute left-1 lg:-left-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white shadow-lg border border-falcar-cream/60 items-center justify-center text-falcar-brown hover:bg-falcar-cream/40 hover:scale-105 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all"
+            aria-label="Anterior"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button
+            @click="scrollRight"
+            :disabled="!canScrollRight"
+            class="hidden sm:flex absolute right-1 lg:-right-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white shadow-lg border border-falcar-cream/60 items-center justify-center text-falcar-brown hover:bg-falcar-cream/40 hover:scale-105 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all"
+            aria-label="Siguiente"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
         </div>
       </div>
     </div>

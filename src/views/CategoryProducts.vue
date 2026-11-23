@@ -105,8 +105,6 @@
           >
             <div class="card-bg">
               <img :src="p.images[0] || placeholderImage" :alt="p.name" loading="lazy" decoding="async" @error="handleImageError" />
-              <div class="card-overlay"></div>
-              <div class="card-tint" :class="categoryStyleOf(p.category).overlayClass"></div>
               <div class="card-accent" :class="categoryStyleOf(p.category).bgClass"></div>
               <div v-if="p.originalPrice && p.originalPrice > p.price" class="discount-badge">
                 -{{ Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) }}%
@@ -122,22 +120,22 @@
                   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                 </svg>
               </button>
+            </div>
+            <div class="card-content">
               <span :class="['status-badge', statusClass(p.status)]">{{ getStatusText(p.status) }}</span>
-              <div class="card-content">
-                <div class="cat-label" :class="categoryStyleOf(p.category).chipClass">{{ categoryName(p.category) }}</div>
-                <h3 class="prod-name">{{ p.name }}</h3>
-                <div class="price-row">
-                  <span class="price">${{ p.price.toLocaleString() }}</span>
-                  <span v-if="p.originalPrice && p.originalPrice > p.price" class="old-price">${{ p.originalPrice.toLocaleString() }}</span>
-                </div>
-                <button
-                  v-if="p.status === 'available'"
-                  class="add-btn"
-                  type="button"
-                  @click.stop="addProductToCart(p)"
-                >Agregar</button>
-                <button v-else disabled class="add-btn disabled">{{ p.status === 'out-of-stock' ? 'Agotado' : 'Proximamente' }}</button>
+              <p class="cat-label" :class="categoryStyleOf(p.category).labelClass">{{ categoryName(p.category) }}</p>
+              <h3 class="prod-name">{{ p.name }}</h3>
+              <div class="price-row">
+                <span class="price">${{ p.price.toLocaleString() }}</span>
+                <span v-if="p.originalPrice && p.originalPrice > p.price" class="old-price">${{ p.originalPrice.toLocaleString() }}</span>
               </div>
+              <button
+                v-if="p.status === 'available'"
+                class="add-btn"
+                type="button"
+                @click.stop="addProductToCart(p)"
+              >Agregar</button>
+              <button v-else disabled class="add-btn disabled">{{ p.status === 'out-of-stock' ? 'Agotado' : 'Proximamente' }}</button>
             </div>
           </article>
         </div>
@@ -469,6 +467,7 @@ defineOptions({ name: 'CategoryProductsView' })
 </script>
 
 <style scoped>
+/* ===== BASE / DESKTOP (más de 1024px, sin media query) ===== */
 .category-page {
   width: 100%;
   padding-top: 10px;
@@ -483,10 +482,6 @@ defineOptions({ name: 'CategoryProductsView' })
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 1.5rem;
-}
-
-@media (max-width: 1024px) {
-  .layout { grid-template-columns: 1fr; }
 }
 
 .sidebar {
@@ -612,20 +607,16 @@ defineOptions({ name: 'CategoryProductsView' })
 
 .category-hero {
   display: grid;
-  grid-template-columns: 1fr 0.6fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 0.45fr;
+  gap: 1.5rem;
   align-items: center;
   background: white;
   border-radius: 18px;
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 1.75rem;
   box-shadow: 0 4px 20px rgba(5, 42, 117, 0.08);
   border: 1px solid rgba(212, 155, 39, 0.12);
   margin-bottom: 1rem;
   overflow: hidden;
-}
-
-@media (max-width: 768px) {
-  .category-hero { grid-template-columns: 1fr; }
 }
 
 .category-hero--noimage {
@@ -672,18 +663,21 @@ defineOptions({ name: 'CategoryProductsView' })
 }
 
 .category-hero-image {
-  width: 110%;
+  width: 100%;
+  max-width: 300px;
+  justify-self: end;
+  align-self: center;
   border-radius: 14px;
   overflow: hidden;
   background: #F4F6FA;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: -10%;
 }
 
 .category-hero-image img {
   width: 100%;
+  max-height: 240px;
   height: auto;
   object-fit: contain;
   display: block;
@@ -695,10 +689,6 @@ defineOptions({ name: 'CategoryProductsView' })
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
-}
-
-@media (max-width: 640px) {
-  .topbar { flex-direction: column; align-items: stretch; }
 }
 
 .meta-text {
@@ -745,18 +735,21 @@ defineOptions({ name: 'CategoryProductsView' })
   gap: 1.25rem;
 }
 
-@media (max-width: 1280px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+/* Pantallas grandes medianas (1025px - 1280px): 3 columnas */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 
 .card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(5, 42, 117, 0.08);
   border: 1px solid rgba(212, 155, 39, 0.1);
   transition: all 0.3s;
-  aspect-ratio: 3 / 5;
+  background: white;
 }
 
 .card:hover {
@@ -765,31 +758,23 @@ defineOptions({ name: 'CategoryProductsView' })
 }
 
 .card-bg {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
 }
 
 .card-bg img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   display: block;
   transition: transform 0.6s;
 }
 
-.card:hover .card-bg img { transform: scale(1.08); }
-
-.card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(30, 20, 10, 0.75) 0%, rgba(30, 20, 10, 0.15) 50%, transparent 100%);
-}
-
-.card-tint {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
+.card:hover .card-bg img { transform: scale(1.05); }
 
 .card-accent {
   position: absolute;
@@ -815,15 +800,13 @@ defineOptions({ name: 'CategoryProductsView' })
 }
 
 .status-badge {
-  position: absolute;
-  top: 0.7rem;
-  right: 0.7rem;
-  padding: 0.25rem 0.6rem;
-  font-size: 0.7rem;
+  align-self: flex-start;
+  margin-bottom: 0.4rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.66rem;
   font-weight: 700;
   border-radius: 8px;
   font-family: 'Open Sans', sans-serif;
-  z-index: 2;
 }
 
 .st-available { background: #22c55e; color: white; }
@@ -832,8 +815,8 @@ defineOptions({ name: 'CategoryProductsView' })
 
 .heart-btn {
   position: absolute;
-  top: 2.7rem;
-  right: 1.0rem;
+  top: 0.7rem;
+  right: 0.7rem;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -858,37 +841,36 @@ defineOptions({ name: 'CategoryProductsView' })
 }
 
 .card-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem 1.2rem;
-  z-index: 2;
+  position: relative;
+  padding: 0.9rem 1rem 1rem;
+  background: white;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .cat-label {
-  display: inline-block;
-  font-size: 0.72rem;
-  letter-spacing: 0.5px;
-  font-weight: 800;
-  color: white;
+  align-self: flex-start;
+  margin: 0;
+  font-size: 0.66rem;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+  text-transform: uppercase;
   font-family: 'Open Sans', sans-serif;
-  padding: 0.15rem 0.6rem;
-  border-radius: 999px;
+  color: #D49B27;
 }
 
 .prod-name {
-  margin: 0.25rem 0 0;
-  font-size: 1.35rem;
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
   font-weight: 700;
-  color: white;
+  color: #052A75;
   font-family: 'Montserrat', sans-serif;
   line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .price-row {
@@ -901,36 +883,38 @@ defineOptions({ name: 'CategoryProductsView' })
 .price {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 1.4rem;
-  color: white;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  font-size: 1.2rem;
+  color: #052A75;
 }
 
 .old-price {
   font-size: 0.8rem;
   text-decoration: line-through;
-  color: rgba(255,255,255,0.6);
+  color: #9CA3AF;
 }
 
 .add-btn {
-  margin-top: 0.7rem;
+  margin-top: auto;
   width: 100%;
   height: 38px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #052A75;
+  background: #052A75;
+  color: white;
   border: 0;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.2s;
-  backdrop-filter: blur(4px);
 }
+
+.price-row { margin-bottom: 0.8rem; }
 
 .add-btn:hover { background: #D49B27; color: white; }
 .add-btn:active { transform: scale(0.97); }
-.add-btn.disabled { background: rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); cursor: not-allowed; }
+.add-btn.disabled { background: #E5E7EB; color: #9CA3AF; cursor: not-allowed; }
+
+.card.skeleton { aspect-ratio: 3 / 4; }
 
 .skeleton { pointer-events: none; position: relative; }
 .skeleton-img { position: absolute; inset: 0; background: linear-gradient(90deg, #eef2f8 25%, #dce4f0 50%, #eef2f8 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
@@ -972,11 +956,41 @@ defineOptions({ name: 'CategoryProductsView' })
 .page-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 .page-btn.active { background: #052A75; color: white; border-color: #052A75; }
 
-/* ===== MOBILE STYLES ===== */
-@media (max-width: 640px) {
+/* ===== TABLET (640px - 1024px) ===== */
+@media (max-width: 1024px) and (min-width: 640px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 1rem 1.5rem 2.5rem;
+    gap: 1.25rem;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .grid {
+    gap: 1rem;
+  }
+
+  .category-description {
+    margin-right: 2rem;
+  }
+
+  .prod-name {
+    font-size: 1.05rem;
+  }
+
+  .price {
+    font-size: 1.1rem;
+  }
+}
+
+/* ===== MOBILE (menos de 640px) ===== */
+@media (max-width: 639px) {
   .category-page { padding-top: 0; }
 
   .layout {
+    grid-template-columns: 1fr;
     padding: 0.75rem 1rem 2rem;
     gap: 1rem;
   }
@@ -1025,6 +1039,8 @@ defineOptions({ name: 'CategoryProductsView' })
   }
 
   .topbar {
+    flex-direction: column;
+    align-items: stretch;
     margin-bottom: 0.75rem;
   }
 
@@ -1039,7 +1055,17 @@ defineOptions({ name: 'CategoryProductsView' })
 
   .card {
     border-radius: 14px;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: auto;
+  }
+
+  .card-bg {
+    height: 140px;
+    min-height: 0;
+  }
+
+  .card-bg img {
+    height: 100%;
+    object-fit: contain;
   }
 
   .card-content {
@@ -1050,18 +1076,23 @@ defineOptions({ name: 'CategoryProductsView' })
 
   .prod-name {
     font-size: 0.95rem;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
   }
 
   .price { font-size: 1.05rem; }
 
   .old-price { font-size: 0.7rem; }
 
+  .price-row {
+    margin-top: auto;
+    margin-bottom: 0.5rem;
+  }
+
   .add-btn {
     height: 30px;
     font-size: 0.75rem;
     border-radius: 8px;
-    margin-top: 0.4rem;
+    margin-top: 0;
   }
 
   .discount-badge {
@@ -1097,4 +1128,5 @@ defineOptions({ name: 'CategoryProductsView' })
     font-size: 0.8rem;
   }
 }
+
 </style>
