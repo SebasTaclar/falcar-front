@@ -38,9 +38,9 @@
             <p class="paragraph">{{ termsData.contactSubtitle }}</p>
 
             <div class="contact-actions">
-              <a class="ig-link" :href="instagramUrl" target="_blank" rel="noopener noreferrer">
+              <a class="ig-link" :href="whatsappUrl" target="_blank" rel="noopener noreferrer">
                 <span class="ig-dot" aria-hidden="true"></span>
-                {{ t('social.instagramLabel') }}: @{{ instagramHandle }}
+                WhatsApp: +57 314 440 6263
               </a>
             </div>
           </div>
@@ -61,17 +61,15 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
-import { SOCIALS } from '@/config/brand'
 import { termsEs, termsEn } from '@/i18n/termsData'
 import type { TermsSection, TermsPageData } from '@/i18n/termsData'
 
 const router = useRouter()
 const { t, locale } = useI18n()
 
-const instagramUrl = SOCIALS.instagramUrl
-const instagramHandle = SOCIALS.instagramHandle
+const whatsappUrl = 'https://wa.me/573144406263?text=%C2%A1Hola!%20Bienvenido%20a%20FALCAR%20GROUP%20S.A.S.%20%F0%9F%91%8D%0A%0AEstamos%20felices%20de%20ayudarte.%20%C2%A1Cu%C3%A9ntanos%20en%20qu%C3%A9%20podemos%20ayudarte%20y%20muy%20pronto%20responderemos%20tu%20mensaje.'
 
-const LAST_UPDATED_ISO = '2026-08-23'
+const LAST_UPDATED_ISO = '2026-11-23'
 
 const termsData = computed<TermsPageData>(() => {
   return locale.value === 'en' ? termsEn : termsEs

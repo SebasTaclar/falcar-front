@@ -11,12 +11,20 @@
       </button>
 
       <div v-if="product" class="qv-body">
+        <!-- Media -->
         <div class="qv-media">
           <div class="qv-hero">
+            <span
+              v-if="product.status !== 'available'"
+              class="qv-status-badge"
+              :class="product.status === 'out-of-stock' ? 'is-out' : 'is-soon'"
+            >
+              {{ statusLabel }}
+            </span>
             <img :src="activeImage" :alt="product.name" loading="lazy" decoding="async" />
           </div>
 
-          <div v-if="product.images?.length" class="qv-thumbs" aria-label="Galería">
+          <div v-if="product.images?.length > 1" class="qv-thumbs" aria-label="Galería">
             <button
               v-for="(img, idx) in product.images"
               :key="img + idx"
@@ -31,22 +39,28 @@
           </div>
         </div>
 
+        <!-- Info -->
         <div class="qv-info">
-          <div class="qv-title">{{ product.name }}</div>
-          <div class="qv-meta">{{ categoryLabel }}</div>
+          <span class="qv-kicker">{{ categoryLabel }}</span>
+          <h2 class="qv-title">{{ product.name }}</h2>
 
-          <div v-if="product.brand" class="qv-brand">Marca: {{ product.brand }}</div>
-          <div v-if="product.sku" class="qv-sku">SKU: {{ product.sku }}</div>
-
-          <div class="qv-price">
-            <span class="qv-price-current">${{ formatPrice(product.price) }} COP</span>
-            <span v-if="product.originalPrice && product.originalPrice > product.price" class="qv-price-original">${{ formatPrice(product.originalPrice) }} COP</span>
+          <div v-if="product.brand || product.sku" class="qv-tags">
+            <span v-if="product.brand" class="qv-tag">Marca: {{ product.brand }}</span>
+            <span v-if="product.sku" class="qv-tag">SKU: {{ product.sku }}</span>
           </div>
 
-          <div v-if="product.description" class="qv-description">{{ product.description }}</div>
+          <div class="qv-price">
+            <div class="qv-price-main">
+              <span class="qv-price-current">${{ formatPrice(product.price) }}</span>
+              <span v-if="product.originalPrice && product.originalPrice > product.price" class="qv-price-original">${{ formatPrice(product.originalPrice) }}</span>
+            </div>
+            <span v-if="discountPercent > 0" class="qv-discount">-{{ discountPercent }}%</span>
+          </div>
+
+          <p v-if="product.description" class="qv-description">{{ product.description }}</p>
 
           <div v-if="product.colors?.length" class="qv-colors">
-            <div class="qv-colors-title">Tallas</div>
+            <div class="qv-colors-title">Tallas disponibles</div>
             <div class="qv-colors-list">
               <button
                 v-for="c in product.colors"
@@ -59,15 +73,12 @@
                 {{ c }}
               </button>
             </div>
-            <p v-if="selectedColors.length > 0" class="text-center text-xs text-falcar-text-muted mt-2 font-poppins">{{ selectedColors.length }} talla(s) seleccionada(s)</p>
-          </div>
-
-          <div class="qv-observations">
+            <p v-if="selectedColors.length > 0" class="qv-colors-hint">{{ selectedColors.length }} talla(s) seleccionada(s)</p>
           </div>
 
           <div class="qv-actions">
-            <p v-if="showSizeWarning" class="text-center text-xs text-red-400 mb-2 font-poppins animate-pulse">Selecciona al menos una talla antes de agregar</p>
-            <p v-else-if="product.status === 'available' && product.colors?.length && selectedColors.length === 0" class="text-center text-xs text-falcar-text-muted mb-2 font-poppins">Escoge tu(s) talla(s)</p>
+            <p v-if="showSizeWarning" class="qv-warning">Selecciona al menos una talla antes de agregar</p>
+            <p v-else-if="product.status === 'available' && product.colors?.length && selectedColors.length === 0" class="qv-hint">Escoge tu(s) talla(s)</p>
             <button
               type="button"
               class="qv-add"
@@ -76,10 +87,6 @@
             >
               {{ product.status === 'available' ? 'Agregar al carrito' : 'No disponible' }}
             </button>
-          </div>
-
-          <div class="qv-status" v-if="product.status !== 'available'">
-            {{ statusText(product.status) }}
           </div>
         </div>
       </div>
@@ -105,7 +112,6 @@ const { categories, loadCategories, getCategoryById } = useProducts()
 
 const activeImageIndex = ref(0)
 const selectedColors = ref<string[]>([])
-const observations = ref('')
 const showSizeWarning = ref(false)
 
 const toggleColor = (color: string) => {
@@ -128,22 +134,28 @@ const activeImage = computed(() => {
   return imgs[activeImageIndex.value] || imgs[0] || '/images/banner1.jpg'
 })
 
+const statusLabel = computed(() => {
+  switch (props.product?.status) {
+    case 'out-of-stock':
+      return 'Agotado'
+    case 'coming-soon':
+      return 'Próximamente'
+    default:
+      return 'Disponible'
+  }
+})
+
+const discountPercent = computed(() => {
+  const p = props.product
+  if (!p?.originalPrice || p.originalPrice <= p.price) return 0
+  return Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100)
+})
+
 const formatPrice = (value: number): string => {
   try {
     return Number(value || 0).toLocaleString()
   } catch {
     return String(value || 0)
-  }
-}
-
-const statusText = (status: Product['status']): string => {
-  switch (status) {
-    case 'out-of-stock':
-      return 'Agotado'
-    case 'coming-soon':
-      return 'Proximamente'
-    default:
-      return ''
   }
 }
 
@@ -184,7 +196,6 @@ const addToQuotationFromModal = () => {
     addToQuotation(mapped, 1, size)
   }
   selectedColors.value = []
-  observations.value = ''
   emit('close')
   openDrawer()
 }
@@ -226,11 +237,12 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+/* ===== OVERLAY & MODAL ===== */
 .qv-overlay {
   position: fixed;
   inset: 0;
   z-index: 2200;
-  background: rgba(74, 55, 40, 0.4);
+  background: rgba(5, 42, 117, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -243,43 +255,43 @@ onBeforeUnmount(() => {
   max-height: 96vh;
   overflow: auto;
   background: white;
-  border: 1px solid rgba(215, 172, 67, 0.15);
   border-radius: 20px;
   position: relative;
-  box-shadow: 0 25px 60px rgba(74, 55, 40, 0.2), 0 0 0 1px rgba(215, 172, 67, 0.08);
+  border: 1px solid rgba(5, 42, 117, 0.08);
+  box-shadow: 0 25px 60px rgba(5, 42, 117, 0.25);
 }
 
 .qv-close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.9);
-  color: #6B5B4E;
+  background: #F4F6FA;
+  color: #052A75;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
   z-index: 2;
-  backdrop-filter: blur(4px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(5, 42, 117, 0.1);
 }
 
 .qv-close:hover {
-  background: #4A3728;
+  background: #052A75;
   color: white;
   transform: rotate(90deg);
 }
 
+/* ===== LAYOUT ===== */
 .qv-body {
   padding: 24px;
   display: grid;
-  grid-template-columns: 0.7fr 0.8fr;
-  gap: 24px;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
 }
 
 .qv-media {
@@ -287,12 +299,17 @@ onBeforeUnmount(() => {
   flex-direction: column;
 }
 
+/* ===== IMAGEN ===== */
 .qv-hero {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 16px;
-  background: transparent;
+  background: #F4F6FA;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .qv-hero img {
@@ -307,6 +324,27 @@ onBeforeUnmount(() => {
   transform: scale(1.03);
 }
 
+.qv-status-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: white;
+}
+
+.qv-status-badge.is-out {
+  background: #D91E28;
+}
+
+.qv-status-badge.is-soon {
+  background: #D49B27;
+}
+
 .qv-thumbs {
   margin-top: 12px;
   display: grid;
@@ -316,7 +354,7 @@ onBeforeUnmount(() => {
 
 .qv-thumb {
   border: 2px solid transparent;
-  background: white;
+  background: #F4F6FA;
   border-radius: 10px;
   padding: 0;
   overflow: hidden;
@@ -325,12 +363,12 @@ onBeforeUnmount(() => {
 }
 
 .qv-thumb:hover {
-  border-color: rgba(215, 172, 67, 0.4);
+  border-color: rgba(212, 155, 39, 0.5);
 }
 
 .qv-thumb.active {
   border-color: #D49B27;
-  box-shadow: 0 0 0 2px rgba(215, 172, 67, 0.2);
+  box-shadow: 0 0 0 2px rgba(212, 155, 39, 0.2);
 }
 
 .qv-thumb img {
@@ -340,74 +378,110 @@ onBeforeUnmount(() => {
   display: block;
 }
 
-.qv-title {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #4A3728;
-  line-height: 1.2;
+/* ===== INFO ===== */
+.qv-info {
+  display: flex;
+  flex-direction: column;
 }
 
-.qv-meta {
-  margin-top: 6px;
-  font-size: 0.78rem;
-  font-weight: 600;
+.qv-kicker {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: #D49B27;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.qv-brand, .qv-sku {
+.qv-title {
   margin-top: 4px;
-  font-size: 0.82rem;
-  color: #8B7355;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #052A75;
+  line-height: 1.2;
 }
 
+.qv-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.qv-tag {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #3A4A6B;
+  background: #F4F6FA;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+}
+
+/* ===== PRECIO ===== */
 .qv-price {
-  margin-top: 14px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #F4F6FA;
+  border-radius: 12px;
+  border: 1px solid rgba(5, 42, 117, 0.06);
+}
+
+.qv-price-main {
   display: flex;
   align-items: baseline;
   gap: 10px;
-  padding: 10px 14px;
-  background: #F4F6FA;
-  border-radius: 12px;
-  border: 1px solid rgba(215, 172, 67, 0.12);
 }
 
 .qv-price-current {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.35rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #4A3728;
+  color: #052A75;
 }
 
 .qv-price-original {
   font-size: 0.9rem;
-  color: #8B7355;
+  color: #7A8AAB;
   text-decoration: line-through;
 }
 
+.qv-discount {
+  background: #D91E28;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+}
+
+/* ===== DESCRIPCIÓN ===== */
 .qv-description {
   margin-top: 14px;
-  color: #6B5B4E;
-  line-height: 1.6;
+  color: #3A4A6B;
+  line-height: 1.7;
   font-size: 0.9rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   white-space: pre-line;
 }
 
+/* ===== TALLAS ===== */
 .qv-colors {
-  margin-top: 16px;
+  margin-top: 18px;
 }
 
 .qv-colors-title {
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #4A3728;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #052A75;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .qv-colors-list {
@@ -415,28 +489,65 @@ onBeforeUnmount(() => {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 10px;
-  margin-bottom: 8rem;
 }
 
 .qv-color {
-  border: 1px solid rgba(215, 172, 67, 0.2);
+  border: 1px solid rgba(5, 42, 117, 0.15);
   background: white;
-  color: #4A3728;
+  color: #052A75;
   padding: 7px 14px;
   border-radius: 999px;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.82rem;
-  font-weight: 500;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.qv-color:hover {
+  border-color: #D49B27;
 }
 
 .qv-color.active {
   border-color: #D49B27;
-  background: #F4F6FA;
-  box-shadow: 0 0 0 2px rgba(215, 172, 67, 0.15);
+  background: #FBF3E1;
+  box-shadow: 0 0 0 2px rgba(212, 155, 39, 0.2);
 }
 
+.qv-colors-hint {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #7A8AAB;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* ===== ACCIONES ===== */
 .qv-actions {
-  margin-top: 18px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.qv-warning {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #D91E28;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 8px;
+  animation: qv-pulse 1s infinite;
+}
+
+.qv-hint {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #7A8AAB;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 8px;
+}
+
+@keyframes qv-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }
 
 .qv-add {
@@ -444,19 +555,19 @@ onBeforeUnmount(() => {
   height: 48px;
   border-radius: 14px;
   border: 0;
-  background: #4A3728;
+  background: #052A75;
   color: white;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 0.92rem;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.qv-add:hover {
+.qv-add:hover:not(:disabled) {
   background: #D49B27;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(215, 172, 67, 0.3);
+  box-shadow: 0 4px 12px rgba(212, 155, 39, 0.35);
 }
 
 .qv-add:active {
@@ -464,28 +575,19 @@ onBeforeUnmount(() => {
 }
 
 .qv-add:disabled {
-  background: #E8DDD0;
-  color: #8B7355;
+  background: #E5E7EB;
+  color: #9CA3AF;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
-.qv-status {
-  margin-top: 10px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.85rem;
-  color: #8B7355;
-  text-align: center;
-}
-
-.qv-observations {
-  margin-top: 14px;
-}
-
+/* ===== RESPONSIVE ===== */
 @media (max-width: 980px) {
   .qv-body {
     grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 16px;
   }
 
   .qv-thumbs {
@@ -493,8 +595,11 @@ onBeforeUnmount(() => {
   }
 
   .qv-price-current {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+  }
+
+  .qv-title {
+    font-size: 1.35rem;
   }
 }
 </style>
-

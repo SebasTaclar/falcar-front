@@ -12,7 +12,7 @@
             <p class="font-poppins text-white/60 text-[10px] lg:text-xs leading-relaxed mb-3 lg:mb-4 max-w-[16rem] mx-auto lg:mx-0">
               Soluciones integrales de alta calidad, productos confiables y venta de juguetes.
             </p>
-            <p class="font-poppins text-white/50 text-[10px] lg:text-xs mb-2 lg:mb-3">Síguenos en nuestras redes</p>
+            <p class="font-poppins text-white/50 text-[10px] lg:text-xs mb-2 lg:mb-3">Escríbenos por WhatsApp</p>
             <div class="flex gap-2 lg:gap-3 justify-center lg:justify-start mb-4 lg:mb-6">
               <a
                 v-for="social in socials"
@@ -124,35 +124,35 @@
                 <div class="step-number">1</div>
                 <div class="step-content">
                   <h3>Explora el catálogo</h3>
-                  <p>Explora nuestras categorías o usa el buscador para encontrar los productos que buscas.</p>
+                  <p>Explora las categorías de FALCAR GROUP o usa el buscador para encontrar los juguetes y productos que buscas.</p>
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
                   <h3>Agrega al carrito</h3>
-                  <p>Selecciona la talla y cantidad, luego haz clic en "Agregar al carrito". Puedes agregar varios productos.</p>
+                  <p>Selecciona la cantidad y haz clic en "Agregar al carrito". Puedes agregar todos los productos que quieras.</p>
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
                   <h3>Confirma tu pedido</h3>
-                  <p>En el carrito, haz clic en "Comprar ahora". Completa tus datos y dirección de envío.</p>
+                  <p>En el carrito, haz clic en "Comprar ahora" y completa tus datos con la dirección de envío.</p>
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">4</div>
                 <div class="step-content">
                   <h3>Paga de forma segura</h3>
-                  <p>Serás redirigido a Wompi para completar el pago con PSE, tarjeta, Nequi u otro medio disponible.</p>
+                  <p>Serás redirigido a Wompi, nuestra pasarela de pago, donde puedes pagar con PSE, tarjeta, Nequi u otro medio disponible.</p>
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">5</div>
                 <div class="step-content">
-                  <h3>Recibe en casa</h3>
-                  <p>Recibirás un número de guía para rastrear tu envío. ¡Cuidamos tu pedido con mucho amor!</p>
+                  <h3>Recibe tu pedido</h3>
+                  <p>Un asesor de FALCAR GROUP se pondrá en contacto contigo para cuadrar el envío y la entrega de tu pedido. ¡Gracias por comprar con nosotros!</p>
                 </div>
               </div>
             </div>
@@ -167,8 +167,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useCategories } from '@/composables/useCategories'
 
 const currentYear = new Date().getFullYear()
 const showHowToBuy = ref(false)
@@ -183,19 +184,29 @@ const toggleSection = (title: string) => {
 const isSectionOpen = (title: string) => !!openSections.value[title]
 
 const socials = [
-  { name: 'Instagram', icon: '📷', url: 'https://www.instagram.com/pikiitos.co?igsi=MWljd2NsY3p6NTJvcQ%3D%3D&utm_source=qr' },
-  { name: 'TikTok', icon: '🎵', url: 'https://www.tiktok.com/@pikiitos?_r=1&_t=ZS-994hJPhcsEu' },
   { name: 'WhatsApp', icon: '💬', url: 'https://wa.me/573144406263?text=%C2%A1Hola!%20Bienvenido%20a%20FALCAR%20GROUP%20S.A.S.%20%F0%9F%91%8D%0A%0AEstamos%20felices%20de%20ayudarte.%20%C2%A1Cu%C3%A9ntanos%20en%20qu%C3%A9%20podemos%20ayudarte%20y%20muy%20pronto%20responderemos%20tu%20mensaje.' },
 ]
 
-const footerLinks = [
+const { categories, loadCategories } = useCategories()
+
+loadCategories()
+
+function slugify(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+}
+
+const footerLinks = computed(() => [
   {
     title: 'Tienda',
     links: [
-      { label: 'Niñas', to: '/categorias/ninas' },
-      { label: 'Niños', to: '/categorias/ninos' },
-      { label: 'Bebés', to: '/categorias/bebes' },
-      { label: 'Accesorios', to: '/categorias/accesorios' },
+      ...categories.value.map(cat => ({ label: cat.name, to: '/categorias/' + slugify(cat.name) })),
       { label: 'Novedades', to: '/colecciones' },
       { label: 'Ofertas', to: '/ofertas' },
     ],
@@ -203,7 +214,7 @@ const footerLinks = [
   {
     title: 'Empresa',
     links: [
-      { label: 'Nuestra Historia', to: '/nosotros' },
+      { label: 'Nuestra Historia', to: '/#nosotros' },
       { label: 'Contacto', to: '/#contacto' },
       { label: 'Colecciones', to: '/#categorias' },
       { label: 'Tienda', to: '/productos' },
@@ -218,7 +229,7 @@ const footerLinks = [
       { label: 'Términos y condiciones', to: '/terms-and-conditions' },
     ],
   },
-]
+])
 
 const paymentMethods = [
   'PSE',
